@@ -12,17 +12,39 @@
 #include <stdlib.h>
 #include "calcular.h"
 #include "validar-entrada.h"
+#include "apoyoTp1.h"
 
 int main(void) {
 	setbuf(stdout,NULL);
 
 	int opcionMenu;
 	int kilometros;
-	int precioAerolineas;
-	int precioLatam;
-	int precioVuelo;
+	float precioAerolineas;
+	float precioLatam;
+	float precioVuelo;
 	char direccionDinero;
 	int repetir;
+	float descuento;
+	float aumento;
+	float valorBitcoin;
+	float precioDescuentoAerolineas;
+	float precioAumentoAerolineas;
+	float precioBitcoinAerolineas;
+	float precioUnitarioAerolineas;
+	float precioDescuentoLatam;
+	float precioAumentoLatam;
+	float precioBitcoinLatam;
+	float precioUnitarioLatam;
+	float diferenciaPrecio;
+	int banderaAerolineas;
+	int banderaLatam;
+
+	descuento = 10;
+	aumento = 25;
+	valorBitcoin = 4606954.55;
+	banderaAerolineas = 0;
+	banderaLatam = 0;
+
 
 	do{
 		printf("\n\n1.Ingresar Cantidad de kilometros"
@@ -62,16 +84,53 @@ int main(void) {
 						precioLatam = precioVuelo;
 					}
 
-					repetir = reIngresar(repetir);
+					repetir = reIngresar();
 
 				}while(repetir == 0);
 
 				break;
 
 			case 3:
+				if(precioAerolineas > 0)
+				{
+					opcionTres(precioAerolineas, &precioDescuentoAerolineas, descuento, &precioAumentoAerolineas, aumento, &precioBitcoinAerolineas, valorBitcoin, &precioUnitarioAerolineas, kilometros);
+					banderaAerolineas = 1;
+				}
+				if(precioLatam > 0)
+				{
+					opcionTres(precioLatam, &precioDescuentoLatam, descuento, &precioAumentoLatam, aumento, &precioBitcoinLatam, valorBitcoin, &precioUnitarioLatam, kilometros);
+					banderaLatam = 1;
+				}
+
+				if(banderaLatam == banderaAerolineas)
+				{
+					diferenciaPrecio = precioAerolineas - precioLatam;
+					if(diferenciaPrecio <0)
+					{
+						diferenciaPrecio*=-1;
+					}
+				}
 				break;
 
 			case 4:
+				printf("\nKMs Ingresados: %d", kilometros);
+				if(banderaAerolineas==1)
+				{
+					opcionCuatroAerolineas(precioAerolineas, precioDescuentoAerolineas, precioAumentoAerolineas, precioBitcoinAerolineas, precioUnitarioAerolineas);
+				}
+				else
+				{
+					opcionCuatroAerolineasVacio();
+				}
+
+				if(banderaLatam == 1)
+				{
+					opcionCuatroLatam(precioAerolineas, precioDescuentoAerolineas, precioAumentoAerolineas, precioBitcoinAerolineas, precioUnitarioAerolineas);
+				}
+				else
+				{
+					opcionCuatroLatamVacio();
+				}
 				break;
 
 			case 5:

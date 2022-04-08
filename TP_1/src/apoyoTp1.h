@@ -8,19 +8,12 @@
 #ifndef APOYOTP1_H_
 #define APOYOTP1_H_
 
+void opcionTres(float precioEmpresa, float* uDescuento, float vDescuento, float* uInteres, float vInteres, float* uBitcoin, float vBitcoin, float* uKilometros, float vKilometros);
 
-//					"KMs Ingresados: No se puede calcular"
-//					"\n\nPrecioAerolineas: No se puede calcular"
-//					"a) Precio con tarjeta de debito: No se puede calcular"
-//					"\nb) Precio con tarjeta de credito: No se puede calcular"
-//					"\nc) Precio pagando con bitcoin: No se puede calcular"
-//					"\nd) Mostrar precio unitario: No se puede calcular"
-//					"\n\nPrecio Latam: No se puede calcular"
-//  				"a) Precio con tarjeta de debito: No se puede calcular"
-//					"\nb) Precio con tarjeta de credito: No se puede calcular"
-//	    			"\nc) Precio pagando con bitcoin: No se puede calcular"
-//			     	"\nd) Mostrar precio unitario: No se puede calcular"
-//					"\n\nLa diferencia de precio es:  No se puede calcular";
+void opcionCuatroAerolineas(float precio, float mDescuento, float mIntereses, float mBitcoin, float mKilometros);
+void opcionCuatroAerolineasVacio(void);
+void opcionCuatroLatam(float precio, float mDescuento, float mIntereses, float mBitcoin, float mKilometros);
+void opcionCuatroLatamVacio(void);
 
 
 
