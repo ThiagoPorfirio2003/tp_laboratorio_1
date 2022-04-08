@@ -8,7 +8,16 @@
 #ifndef VALIDAR_ENTRADA_H_
 #define VALIDAR_ENTRADA_H_
 
-void pedirChar(char* letra, char opcionUno, char opcionDos);
-char validacionChar(char letra ,char opcionUno, char opcionDos);
+char eCharC(char opcionUno, char opcionDos);
 
+char vChar(char letra ,char opcionUno, char opcionDos);
+
+//////////
+float eFloat();
+int eInt();
+
+float vFloatMa(int numero, float limite);
+int vIntMa(int numero, int limite);
+
+int reIngresar(void);
 #endif /* VALIDAR_ENTRADA_H_ */

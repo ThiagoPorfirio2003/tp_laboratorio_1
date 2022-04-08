@@ -6,19 +6,25 @@
  */
 #include <stdio.h>
 
-void pedirChar(char* letra, char opcionUno, char opcionDos)
+char eCharC(char opcionUno, char opcionDos)
 {
+	char letra;
+
 	printf("\nIngrese \"%c\" o \"%c\": ", opcionUno, opcionDos);
-	scanf("%d", &letra);
+	fflush(stdin);
+	scanf("%c", &letra);
+
+	return letra;
 }
 
-char validarChar(char letra ,char opcionUno, char opcionDos)
+char vChar(char letra ,char opcionUno, char opcionDos)
 {
 	int retorno;
 
 	while(letra != opcionUno && letra != opcionDos)
 	{
 		printf("\nLa letra ingresada es invalida, ingrese \"%c\" o \"%c\": ", opcionUno, opcionDos);
+		fflush(stdin);
 		scanf("%c", &letra);
 	}
 
@@ -31,8 +37,52 @@ char validarChar(char letra ,char opcionUno, char opcionDos)
 ////////////////////////////////////
 
 
-void ingresoN(int* num)
+float eFloat()
 {
+	float numero;
+
 	printf("\nIngresar el numero: ");
-	scanf("%d",&num);
+	scanf("%f", &numero);
+
+	return numero;
 }
+
+int eInt()
+{
+	int numero;
+
+	printf("\nIngresar el numero: ");
+	scanf("%d", &numero);
+
+	return numero;
+}
+
+float vFloatMa(int numero, float limite)
+{
+	while(numero<limite)
+	{
+		printf("\nEl dato ingresado es incorrecto, este tiene que ser mayo a \"\": ");
+		scanf("%d", &numero);
+	}
+	return numero;
+}
+
+int vIntMa(int numero, int limite)
+{
+	while(numero<limite)
+	{
+		printf("\nEl dato ingresado es incorrecto, este tiene que ser mayo a \"\": ");
+		scanf("%d", &numero);
+	}
+	return numero;
+}
+
+int reIngresar(void)
+{
+	int opcion;
+	printf("\nSi desea ingresar otro numero ingrese 0, de lo contrario ingrese cualquier otro numero: ");
+	scanf("%d", opcion);
+	return opcion;
+}
+
+

@@ -16,12 +16,13 @@
 int main(void) {
 	setbuf(stdout,NULL);
 
-	int opcion;
+	int opcionMenu;
 	int kilometros;
 	int precioAerolineas;
 	int precioLatam;
 	int precioVuelo;
-	char opcionVuelo;
+	char direccionDinero;
+	int repetir;
 
 	do{
 		printf("\n\n1.Ingresar Cantidad de kilometros"
@@ -31,17 +32,39 @@ int main(void) {
 		"\n5.Carga forzada de datos (Datos precargados)"
 		"\n6.Salir"
 		"\nEscriba el numero de la opcion que desea realizar: ");
-		scanf("%d",&opcion);
+		scanf("%d",&opcionMenu);
 
-		switch(opcion)
+		switch(opcionMenu)
 		{
 			case 1:
-				ingresoN(&kilometros);
+				kilometros = eInt();
+				vIntMa(kilometros, 0);
 				break;
 
 			case 2:
-				ingresoN(&precioVuelo);
 
+				do{
+					precioVuelo = eFloat();
+					vFloatMa(precioVuelo, 0);
+
+					printf("Si el precio corresponde a Aerolineas, presione \"y\", si pertenece a Latam \"z\": ");
+					fflush(stdin);
+					scanf("%c", &direccionDinero);
+
+					direccionDinero = vChar(direccionDinero, 'y', 'z');
+
+					if(direccionDinero == 'y')
+					{
+						precioAerolineas = precioVuelo;
+					}
+					else
+					{
+						precioLatam = precioVuelo;
+					}
+
+					repetir = reIngresar(repetir);
+
+				}while(repetir == 0);
 
 				break;
 
@@ -57,7 +80,7 @@ int main(void) {
 			default:
 				break;
 		}
-	}while(opcion<6);
+	}while(opcionMenu<6);
 	/*
 	int opcion;
 	int kilometros;
