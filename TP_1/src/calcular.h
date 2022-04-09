@@ -10,7 +10,7 @@
 
 float decremento(int valorBase,float descenso);
 float incremento(int valorBase, float ascenso);
-float restaD(int valorUno, int valorDos);
+float restaD(float valorUno, float valorDos);
 float divisionD(float dividendo,float divisor);
 
 

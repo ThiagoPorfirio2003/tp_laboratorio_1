@@ -69,9 +69,9 @@ float vFloatMa(int numero, float limite)
 
 int vIntMa(int numero, int limite)
 {
-	while(numero<limite)
+	while(numero<limite+1)
 	{
-		printf("\nEl dato ingresado es incorrecto, este tiene que ser mayo a \"\": ");
+		printf("\nEl dato ingresado es incorrecto, este tiene que ser mayor a \"%d\" : ", limite);
 		scanf("%d", &numero);
 	}
 	return numero;
@@ -81,7 +81,7 @@ int reIngresar(void)
 {
 	int opcion;
 	printf("\nSi desea ingresar otro numero ingrese 0, de lo contrario ingrese cualquier otro numero: ");
-	scanf("%d", opcion);
+	scanf("%d", &opcion);
 	return opcion;
 }
 

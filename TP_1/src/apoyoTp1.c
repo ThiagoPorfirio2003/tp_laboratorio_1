@@ -51,6 +51,19 @@ void opcionCuatroLatamVacio(void)
 			"\nc) Precio pagando con bitcoin: No se puede calcular"
 			"\nd) Mostrar precio unitario: No se puede calcular");
 }
+
+//void opcionCincoArelineas(float precioFijo, float* uDescuentoFijo, float vDescuentoFijo, float* uInteresFijo, float vInteresFijo, float* uBitcoinFijo, float vBitcoinFijo, float* uKilometrosFijo, float vKilometrosFijo)
+//{
+//	opcionTres(precioFijo, &uDescuentoFijo, vDescuentoFijo, &uInteresFijo, vInteresFijo, &uBitcoinFijo, vBitcoinFijo, &uKilometrosFijo, vKilometrosFijo);
+//	printf("\nKMs Ingresados: %.2f", vKilometrosFijo);
+//	opcionCuatroAerolineas(precioFijo, vDescuentoFijo, vInteresFijo, vBitcoinFijo, uKilometrosFijo);
+//}
+//
+//void opcionCincoLatam(float precioFijo, float* uDescuentoFijo, float vDescuentoFijo, float* uInteresFijo, float vInteresFijo, float* uBitcoinFijo, float vBitcoinFijo, float* uKilometrosFijo, float vKilometrosFijo)
+//{
+//	opcionTres(precioFijo, &uDescuentoFijo, vDescuentoFijo, &uInteresFijo, vInteresFijo, &uBitcoinFijo, vBitcoinFijo, &uKilometrosFijo, vKilometrosFijo);
+//	opcionCuatroAerolineas(precioFijo, vDescuentoFijo, vInteresFijo, vBitcoinFijo, uKilometrosFijo);
+//}
 //
 //					"\n\nPrecioAerolineas: No se puede calcular"
 //					"a) Precio con tarjeta de debito: No se puede calcular"

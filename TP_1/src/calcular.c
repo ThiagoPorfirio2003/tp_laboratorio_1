@@ -18,7 +18,7 @@ float incremento(int valorBase, float ascenso)
 	return resultado;
 }
 
-float restaD(int valorUno, int valorDos)
+float restaD(float valorUno, float valorDos)
 {
 	float resultado;
 	resultado = valorUno - valorDos;

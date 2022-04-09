@@ -38,12 +38,18 @@ int main(void) {
 	float diferenciaPrecio;
 	int banderaAerolineas;
 	int banderaLatam;
+	int precioLatamForzado;
+	int precioAerolineasForzado;
+	int kilometrosForzado;
 
 	descuento = 10;
 	aumento = 25;
 	valorBitcoin = 4606954.55;
 	banderaAerolineas = 0;
 	banderaLatam = 0;
+	precioLatamForzado = 159339;
+	precioAerolineasForzado = 162965;
+	kilometrosForzado = 7090;
 
 
 	do{
@@ -125,21 +131,31 @@ int main(void) {
 
 				if(banderaLatam == 1)
 				{
-					opcionCuatroLatam(precioAerolineas, precioDescuentoAerolineas, precioAumentoAerolineas, precioBitcoinAerolineas, precioUnitarioAerolineas);
+					opcionCuatroLatam(precioLatam, precioDescuentoLatam, precioAumentoLatam, precioBitcoinLatam, precioUnitarioLatam);
 				}
 				else
 				{
 					opcionCuatroLatamVacio();
 				}
+				printf("\n\nLa diferencia de precio es: %.2f ", diferenciaPrecio);
 				break;
 
 			case 5:
+				opcionTres(precioAerolineasForzado, &precioDescuentoAerolineas, descuento, &precioAumentoAerolineas, aumento, &precioBitcoinAerolineas, valorBitcoin, &precioUnitarioAerolineas, kilometrosForzado);
+				opcionCuatroAerolineas(precioAerolineasForzado, precioDescuentoAerolineas, precioAumentoAerolineas, precioBitcoinAerolineas, precioUnitarioAerolineas);
+
+				opcionTres(precioLatamForzado, &precioDescuentoLatam, descuento, &precioAumentoLatam, aumento, &precioBitcoinLatam, valorBitcoin, &precioUnitarioLatam, kilometrosForzado);
+				opcionCuatroLatam(precioLatamForzado, precioDescuentoLatam, precioAumentoLatam, precioBitcoinLatam, precioUnitarioLatam);
+
+				diferenciaPrecio = restaD(precioAerolineasForzado, precioLatamForzado);
+
+				printf("\n\nLa diferencia de precio es: %.2f ", diferenciaPrecio);
 				break;
 
 			default:
 				break;
 		}
-	}while(opcionMenu<6);
+	}while(opcionMenu<4);
 	/*
 	int opcion;
 	int kilometros;
