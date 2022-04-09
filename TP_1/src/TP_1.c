@@ -52,6 +52,7 @@ int main(void) {
 	kilometrosForzado = 7090;
 
 
+
 	do{
 		printf("\n\n1.Ingresar Cantidad de kilometros"
 		"\n2.Ingresar Precio de Vuelos"
