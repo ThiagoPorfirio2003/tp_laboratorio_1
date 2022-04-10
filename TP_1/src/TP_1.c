@@ -142,10 +142,8 @@ int main(void) {
 					precioVuelo = eFloat();
 					precioVuelo = vFloatMaIgual(precioVuelo, 1);
 
-					printf("Si el precio corresponde a Aerolineas presione \"y\", si pertenece a Latam \"z\": ");
-					fflush(stdin);
-					scanf("%c", &direccionDinero);
-
+					printf("\nSi el precio corresponde a Aerolineas presione \"y\", si pertenece a Latam \"z\": ");
+					direccionDinero = eChar();
 					direccionDinero = vChar(direccionDinero, 'y', 'z');
 
 					if(direccionDinero == 'y')
@@ -234,6 +232,7 @@ int main(void) {
 					banderaOpcionTres = 0;
 					banderaPrecioLatam = 0;
 					banderaPrecioAerolineas = 0;
+					contador = 0;
 				}
 				else
 				{

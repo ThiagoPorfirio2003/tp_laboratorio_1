@@ -8,8 +8,8 @@
 #ifndef ENTRADA_H_
 #define ENTRADA_H_
 
-
-float eFloat();
-int eInt();
+char eChar(void);
+float eFloat(void);
+int eInt(void);
 
 #endif /* ENTRADA_H_ */

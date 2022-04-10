@@ -7,8 +7,18 @@
 
 #include <stdio.h>
 
+char eChar()
+{
+	char letra;
 
-float eFloat()
+	printf("\nIngrese la letra: ");
+	fflush(stdin);
+	scanf("%c", &letra);
+
+	return letra;
+}
+
+float eFloat(void)
 {
 	float numero;
 	printf("\nIngresar el numero: ");
@@ -17,7 +27,7 @@ float eFloat()
 	return numero;
 }
 
-int eInt()
+int eInt(void)
 {
 	int numero;
 

@@ -57,7 +57,7 @@ int vIntMeIgual(int numero, int limite)
 int reIngresar(void)
 {
 	int opcion;
-	printf("Si desea ingresar otro numero ingrese 1, de lo contrario ingrese cualquier otro numero: ");
+	printf("\nSi desea ingresar otro numero ingrese 1, de lo contrario ingrese cualquier otro numero: ");
 	scanf("%d", &opcion);
 	return opcion;
 }
