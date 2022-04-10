@@ -14,8 +14,5 @@ void opcionCuatroAerolineas(float precio, float mDescuento, float mIntereses, fl
 void opcionCuatroAerolineasVacio(void);
 void opcionCuatroLatam(float precio, float mDescuento, float mIntereses, float mBitcoin, float mKilometros);
 void opcionCuatroLatamVacio(void);
-void opcionCincoArelineas(float precioFijo, float* uDescuentoFijo, float vDescuentoFijo, float* uInteresFijo, float vInteresFijo, float* uBitcoinFijo, float vBitcoinFijo, float* uKilometrosFijo, float vKilometrosFijo);
-void opcionCincoLatam(float precioFijo, float* uDescuentoFijo, float vDescuentoFijo, float* uInteresFijo, float vInteresFijo, float* uBitcoinFijo, float vBitcoinFijo, float* uKilometrosFijo, float vKilometrosFijo);
-
 
 #endif /* APOYOTP1_H_ */

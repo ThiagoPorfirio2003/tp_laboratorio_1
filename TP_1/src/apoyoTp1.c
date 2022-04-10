@@ -27,7 +27,7 @@ void opcionCuatroAerolineas(float precio, float mDescuento, float mIntereses, fl
 
 void opcionCuatroAerolineasVacio(void)
 {
-	printf("\n\nPrecioAerolineas: No se puede calcular"
+	printf("\n\nPrecioAerolineas: No hay un precio ingresado"
 			"\na) Precio con tarjeta de debito: No se puede calcular"
 			"\nb) Precio con tarjeta de credito: No se puede calcular"
 			"\nc) Precio pagando con bitcoin: No se puede calcular"
@@ -45,7 +45,7 @@ void opcionCuatroLatam(float precio, float mDescuento, float mIntereses, float m
 
 void opcionCuatroLatamVacio(void)
 {
-	printf("\n\nPrecioLatam: No se puede calcular"
+	printf("\n\nPrecioLatam: No hay un precio ingresado"
 			"\na) Precio con tarjeta de debito: No se puede calcular"
 			"\nb) Precio con tarjeta de credito: No se puede calcular"
 			"\nc) Precio pagando con bitcoin: No se puede calcular"

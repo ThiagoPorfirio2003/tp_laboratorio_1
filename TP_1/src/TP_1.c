@@ -11,7 +11,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "calcular.h"
-#include "validar-entrada.h"
+#include "validar.h"
+#include "entrada.h"
 #include "apoyoTp1.h"
 
 int main(void) {
@@ -121,34 +122,13 @@ int main(void) {
 		printf("\n La diferencia de precio es: r");
 		printf("\n\n5. Carga forzada de datos");
 		printf("\n6.Salir");
-		printf("\n\nEscriba el numero de la opcion que desea realizar: ");
-		scanf("%d",&opcionMenu);
+		printf("\n\n¿Que opcion desea realizar? ");
 
+		opcionMenu = eInt();
 		opcionMenu = vIntMeIgual(opcionMenu, 6);
-
-		while(opcionMenu == 4 && banderaOpcionTres == 0)
-		{
-			printf("\nPara usar la opcion 4 requiere de haber elegido la opcion 3 previamente, sera direccionado a esa.\n");
-			opcionMenu = 3;
-		}
-
-		while(opcionMenu == 3 && banderaOpcionUno == 0 && banderaOpcionDos == 0)
-		{
-			printf("\nPara usar la opcion 3 requiere de haber elegido la opcion 1 y/o 2 previamente, elija una de esas: ");
-			scanf("%d",&opcionMenu);
-		}
-
-		while(opcionMenu == 5 && contador>0)
-		{
-			printf("\nComo ya hay datos cargados no se puede seleccionar la opcion 5, elija otra opcion: ");
-			scanf("%d",&opcionMenu);
-		}
-
-
 
 		switch(opcionMenu)
 		{
-
 			case 1:
 				kilometros = eInt();
 				kilometros = vIntMaIgual(kilometros, 1);
@@ -160,8 +140,7 @@ int main(void) {
 
 				do{
 					precioVuelo = eFloat();
-					precioVuelo = vFloatMa(precioVuelo, 1);
-
+					precioVuelo = vFloatMaIgual(precioVuelo, 1);
 
 					printf("Si el precio corresponde a Aerolineas presione \"y\", si pertenece a Latam \"z\": ");
 					fflush(stdin);
@@ -189,76 +168,99 @@ int main(void) {
 				break;
 
 			case 3:
-				if(precioAerolineas > 0)
+				if(banderaOpcionUno == 1 && banderaOpcionDos ==1)
 				{
-					opcionTres(precioAerolineas, &precioDescuentoAerolineas, descuento, &precioAumentoAerolineas, aumento, &precioBitcoinAerolineas, valorBitcoin, &precioUnitarioAerolineas, kilometros);
+					if(precioAerolineas > 0)
+					{
+						opcionTres(precioAerolineas, &precioDescuentoAerolineas, descuento, &precioAumentoAerolineas, aumento, &precioBitcoinAerolineas, valorBitcoin, &precioUnitarioAerolineas, kilometros);
+					}
+					if(precioLatam > 0)
+					{
+						opcionTres(precioLatam, &precioDescuentoLatam, descuento, &precioAumentoLatam, aumento, &precioBitcoinLatam, valorBitcoin, &precioUnitarioLatam, kilometros);
+					}
+
+					if(banderaPrecioLatam == banderaPrecioAerolineas)
+					{
+						diferenciaPrecio = precioAerolineas - precioLatam;
+						if(diferenciaPrecio <0)
+						{
+							diferenciaPrecio*=-1;
+						}
+					}
+					banderaOpcionTres = 1;
 				}
-				if(precioLatam > 0)
+				else
 				{
-					opcionTres(precioLatam, &precioDescuentoLatam, descuento, &precioAumentoLatam, aumento, &precioBitcoinLatam, valorBitcoin, &precioUnitarioLatam, kilometros);
+					printf("\nPara usar la opcion 3 requiere de haber elegido la opcion 1 y/o 2 previamente, elija una de esas: \n\n");
 				}
 
-				if(banderaPrecioLatam == banderaPrecioAerolineas)
-				{
-					diferenciaPrecio = precioAerolineas - precioLatam;
-					if(diferenciaPrecio <0)
-					{
-						diferenciaPrecio*=-1;
-					}
-				}
-				contador++;
-				banderaOpcionTres = 1;
 				break;
 
 			case 4:
-				printf("\nKMs Ingresados: %d", kilometros);
-				if(banderaPrecioAerolineas==1)
+				if(banderaOpcionTres ==1)
 				{
-					opcionCuatroAerolineas(precioAerolineas, precioDescuentoAerolineas, precioAumentoAerolineas, precioBitcoinAerolineas, precioUnitarioAerolineas);
+					printf("\nKMs Ingresados: %d", kilometros);
+					if(banderaPrecioAerolineas==1)
+					{
+						opcionCuatroAerolineas(precioAerolineas, precioDescuentoAerolineas, precioAumentoAerolineas, precioBitcoinAerolineas, precioUnitarioAerolineas);
+					}
+					else
+					{
+						opcionCuatroAerolineasVacio();
+					}
+
+					if(banderaPrecioLatam == 1)
+					{
+						opcionCuatroLatam(precioLatam, precioDescuentoLatam, precioAumentoLatam, precioBitcoinLatam, precioUnitarioLatam);
+					}
+					else
+					{
+						opcionCuatroLatamVacio();
+					}
+
+					printf("\n\nLa diferencia de precio es: ");
+					if(banderaPrecioLatam == banderaPrecioAerolineas)
+					{
+						printf(" %.2f \n\n", diferenciaPrecio);
+					}
+					else
+					{
+						printf("No se puede calcular\n\n");
+					}
+
+
+					banderaOpcionUno = 0;
+					banderaOpcionDos = 0;
+					banderaOpcionTres = 0;
+					banderaPrecioLatam = 0;
+					banderaPrecioAerolineas = 0;
 				}
 				else
 				{
-					opcionCuatroAerolineasVacio();
+					printf("\nPara usar la opcion 4 requiere de haber elegido la opcion 3 previamente, elija otra opcion: \n\n");
 				}
 
-				if(banderaPrecioLatam == 1)
-				{
-					opcionCuatroLatam(precioLatam, precioDescuentoLatam, precioAumentoLatam, precioBitcoinLatam, precioUnitarioLatam);
-				}
-				else
-				{
-					opcionCuatroLatamVacio();
-				}
-
-				printf("\n\nLa diferencia de precio es: ");
-				if(banderaPrecioLatam == banderaPrecioAerolineas)
-				{
-					printf(" %.2f \n", diferenciaPrecio);
-				}
-				else
-				{
-					printf("No se puede calcular");
-				}
-
-
-				banderaOpcionUno = 0;
-				banderaOpcionDos = 0;
-				banderaOpcionTres = 0;
-				banderaPrecioLatam = 0;
-				banderaPrecioAerolineas = 0;
 				break;
 
 			case 5:
-				printf("\nKMs ingresados: %d km", kilometrosForzado);
-				opcionTres(precioAerolineasForzado, &precioDescuentoAerolineas, descuento, &precioAumentoAerolineas, aumento, &precioBitcoinAerolineas, valorBitcoin, &precioUnitarioAerolineas, kilometrosForzado);
-				opcionCuatroAerolineas(precioAerolineasForzado, precioDescuentoAerolineas, precioAumentoAerolineas, precioBitcoinAerolineas, precioUnitarioAerolineas);
+				if(contador == 0)
+				{
+					printf("\nKMs ingresados: %d km", kilometrosForzado);
+					opcionTres(precioAerolineasForzado, &precioDescuentoAerolineas, descuento, &precioAumentoAerolineas, aumento, &precioBitcoinAerolineas, valorBitcoin, &precioUnitarioAerolineas, kilometrosForzado);
+					opcionCuatroAerolineas(precioAerolineasForzado, precioDescuentoAerolineas, precioAumentoAerolineas, precioBitcoinAerolineas, precioUnitarioAerolineas);
 
-				opcionTres(precioLatamForzado, &precioDescuentoLatam, descuento, &precioAumentoLatam, aumento, &precioBitcoinLatam, valorBitcoin, &precioUnitarioLatam, kilometrosForzado);
-				opcionCuatroLatam(precioLatamForzado, precioDescuentoLatam, precioAumentoLatam, precioBitcoinLatam, precioUnitarioLatam);
+					opcionTres(precioLatamForzado, &precioDescuentoLatam, descuento, &precioAumentoLatam, aumento, &precioBitcoinLatam, valorBitcoin, &precioUnitarioLatam, kilometrosForzado);
+					opcionCuatroLatam(precioLatamForzado, precioDescuentoLatam, precioAumentoLatam, precioBitcoinLatam, precioUnitarioLatam);
 
-				diferenciaPrecio = restaD(precioAerolineasForzado, precioLatamForzado);
+					diferenciaPrecio = restaD(precioAerolineasForzado, precioLatamForzado);
 
-				printf("\n\nLa diferencia de precio es: %.2f ", diferenciaPrecio);
+					printf("\n\nLa diferencia de precio es: %.2f \n\n", diferenciaPrecio);
+				}
+
+				else
+				{
+					printf("\nComo ya hay datos cargados no se puede seleccionar la opcion 5, elija otra opcion: \n\n");
+				}
 				break;
 
 			default:
