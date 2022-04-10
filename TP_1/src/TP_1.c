@@ -65,7 +65,11 @@ int main(void) {
 
 
 	do{
-		printf("\n1. Ingresar Cantidad de kilometros: (km = " );
+		if(banderaOpcionUno == 1)
+		{
+			printf("\n");
+		}
+		printf("1. Ingresar Cantidad de kilometros: (km = " );
 		if(banderaOpcionUno == 0)
 		{
 			printf("x)");
@@ -120,6 +124,8 @@ int main(void) {
 		printf("\n\nEscriba el numero de la opcion que desea realizar: ");
 		scanf("%d",&opcionMenu);
 
+		opcionMenu = vIntMeIgual(opcionMenu, 6);
+
 		while(opcionMenu == 4 && banderaOpcionTres == 0)
 		{
 			printf("\nPara usar la opcion 4 requiere de haber elegido la opcion 3 previamente, sera direccionado a esa.\n");
@@ -145,7 +151,7 @@ int main(void) {
 
 			case 1:
 				kilometros = eInt();
-				vIntMa(kilometros, 1);
+				kilometros = vIntMaIgual(kilometros, 1);
 				banderaOpcionUno = 1;
 				contador++;
 				break;
@@ -154,7 +160,8 @@ int main(void) {
 
 				do{
 					precioVuelo = eFloat();
-					vFloatMa(precioVuelo, 0);
+					precioVuelo = vFloatMa(precioVuelo, 1);
+
 
 					printf("Si el precio corresponde a Aerolineas presione \"y\", si pertenece a Latam \"z\": ");
 					fflush(stdin);
@@ -175,7 +182,7 @@ int main(void) {
 
 					repetir = reIngresar();
 
-				}while(repetir == 0);
+				}while(repetir == 1);
 
 				contador++;
 				banderaOpcionDos = 1;
@@ -222,7 +229,17 @@ int main(void) {
 				{
 					opcionCuatroLatamVacio();
 				}
-				printf("\n\nLa diferencia de precio es: %.2f ", diferenciaPrecio);
+
+				printf("\n\nLa diferencia de precio es: ");
+				if(banderaPrecioLatam == banderaPrecioAerolineas)
+				{
+					printf(" %.2f \n", diferenciaPrecio);
+				}
+				else
+				{
+					printf("No se puede calcular");
+				}
+
 
 				banderaOpcionUno = 0;
 				banderaOpcionDos = 0;
@@ -248,6 +265,7 @@ int main(void) {
 				break;
 		}
 	}while(opcionMenu<6);
+
 	/*
 	int opcion;
 	int kilometros;

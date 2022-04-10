@@ -10,7 +10,7 @@ char eCharC(char opcionUno, char opcionDos)
 {
 	char letra;
 
-	printf("\nIngrese \"%c\" o \"%c\": ", opcionUno, opcionDos);
+	printf("Ingrese \"%c\" o \"%c\": ", opcionUno, opcionDos);
 	fflush(stdin);
 	scanf("%c", &letra);
 
@@ -40,7 +40,6 @@ char vChar(char letra ,char opcionUno, char opcionDos)
 float eFloat()
 {
 	float numero;
-
 	printf("\nIngresar el numero: ");
 	scanf("%f", &numero);
 
@@ -57,21 +56,32 @@ int eInt()
 	return numero;
 }
 
-float vFloatMa(int numero, float limite)
+float vFloatMa(float numero, float limite)
 {
 	while(numero<limite)
 	{
-		printf("\nEl dato ingresado es incorrecto, este tiene que ser mayo a \"\": ");
+		printf("El dato ingresado es incorrecto, este tiene que ser mayor igual a \"%.2f\": ", limite);
+		scanf("%f", &numero);
+	}
+
+	return numero;
+}
+
+int vIntMaIgual(int numero, int limite)
+{
+	while(numero<limite)
+	{
+		printf("\nEl dato ingresado es incorrecto, este tiene que ser mayor o igual a \"%d\": ", limite);
 		scanf("%d", &numero);
 	}
 	return numero;
 }
 
-int vIntMa(int numero, int limite)
+int vIntMeIgual(int numero, int limite)
 {
-	while(numero<limite)
+	while(numero>limite)
 	{
-		printf("\nEl dato ingresado es incorrecto, este tiene que ser mayor a \"%d\" : ", limite);
+		printf("\nEl dato ingresado es incorrecto, este tiene que ser menor o igual a \"%d\": ", limite);
 		scanf("%d", &numero);
 	}
 	return numero;
@@ -80,7 +90,7 @@ int vIntMa(int numero, int limite)
 int reIngresar(void)
 {
 	int opcion;
-	printf("\nSi desea ingresar otro numero ingrese 0, de lo contrario ingrese cualquier otro numero: ");
+	printf("Si desea ingresar otro numero ingrese 1, de lo contrario ingrese cualquier otro numero: ");
 	scanf("%d", &opcion);
 	return opcion;
 }

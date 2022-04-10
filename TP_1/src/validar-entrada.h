@@ -17,7 +17,8 @@ float eFloat();
 int eInt();
 
 float vFloatMa(int numero, float limite);
-int vIntMa(int numero, int limite);
+int vIntMaIgual(int numero, int limite);
+int vIntMeIgual(int numero, int limite);
 
 int reIngresar(void);
 #endif /* VALIDAR_ENTRADA_H_ */
