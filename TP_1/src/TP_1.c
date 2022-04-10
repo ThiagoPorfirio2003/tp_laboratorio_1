@@ -19,11 +19,19 @@ int main(void) {
 
 	int opcionMenu;
 	int kilometros;
+	int repetir;
+	int banderaPrecioAerolineas;
+	int banderaPrecioLatam;
+	int precioLatamForzado;
+	int precioAerolineasForzado;
+	int kilometrosForzado;
+	int banderaOpcionUno;
+	int banderaOpcionDos;
+	int banderaOpcionTres;
+	int contador;
 	float precioAerolineas;
 	float precioLatam;
 	float precioVuelo;
-	char direccionDinero;
-	int repetir;
 	float descuento;
 	float aumento;
 	float valorBitcoin;
@@ -36,38 +44,110 @@ int main(void) {
 	float precioBitcoinLatam;
 	float precioUnitarioLatam;
 	float diferenciaPrecio;
-	int banderaAerolineas;
-	int banderaLatam;
-	int precioLatamForzado;
-	int precioAerolineasForzado;
-	int kilometrosForzado;
+	char direccionDinero;
 
+	kilometros = 0;
 	descuento = 10;
 	aumento = 25;
 	valorBitcoin = 4606954.55;
-	banderaAerolineas = 0;
-	banderaLatam = 0;
+	contador = 0;
+
+	banderaOpcionUno = 0;
+	banderaOpcionDos = 0;
+	banderaOpcionTres = 0;
+	banderaPrecioAerolineas = 0;
+	banderaPrecioLatam = 0;
+
+
 	precioLatamForzado = 159339;
 	precioAerolineasForzado = 162965;
 	kilometrosForzado = 7090;
 
 
-
 	do{
-		printf("\n\n1.Ingresar Cantidad de kilometros"
-		"\n2.Ingresar Precio de Vuelos"
-		"\n3.Calcular Costos"
-		"\n4.Informar resultados"
-		"\n5.Carga forzada de datos (Datos precargados)"
-		"\n6.Salir"
-		"\nEscriba el numero de la opcion que desea realizar: ");
+		printf("\n1. Ingresar Cantidad de kilometros: (km = " );
+		if(banderaOpcionUno == 0)
+		{
+			printf("x)");
+		}
+		else
+		{
+			printf("%d)", kilometros );
+		}
+
+		printf("\n\n2. Ingresar Precio de Vuelos: (Aerolineas=");
+
+		if(banderaPrecioAerolineas == 1)
+		{
+			printf("%.2f", precioAerolineas);
+		}
+		else
+		{
+			printf("y");
+		}
+
+		if(banderaPrecioLatam == 1)
+		{
+			printf(", Latam= %.2f)", precioLatam);
+		}
+		else
+		{
+			printf(", Latam= z)");
+		}
+
+		printf("\n   - Precio vuelo Aerolineas: ");
+		printf(	"\n   - Precio vuelo Latam: ");
+		printf("\n\n3. Calcular Costos: ");
+		printf("\n   a) Tarjeta de debito (Descuento 10%%)");
+		printf("\n   b) Tarjeta de credito (interes 25%%)");
+		printf("\n   c) Bitcoin (1BTC -> 4606954.55 Pesos Argentinos)");
+		printf("\n   d) Mostrar precio por km (precio unitario)");
+		printf("\n   e) Mostrar diferencia de precio ingresada (Latam - Aerolíneas)");
+		printf("\n\n4. Informar resultados");
+		printf("\n Latam:");
+		printf("\n a) Precio con tarjeta de débito: r");
+		printf("\n b) Precio con tarjeta de crédito: r");
+		printf("\n c) Precio pagando con bitcoin : r");
+		printf("\n d) Precio unitario: r");
+		printf("\n Areolineas:");
+		printf("\n a) Precio con tarjeta de débito: r");
+		printf("\n b) Precio con tarjeta de crédito: r");
+		printf("\n c) Precio pagando con bitcoin : r");
+		printf("\n d) Precio unitario: r");
+		printf("\n La diferencia de precio es: r");
+		printf("\n\n5. Carga forzada de datos");
+		printf("\n6.Salir");
+		printf("\n\nEscriba el numero de la opcion que desea realizar: ");
 		scanf("%d",&opcionMenu);
+
+		while(opcionMenu == 4 && banderaOpcionTres == 0)
+		{
+			printf("\nPara usar la opcion 4 requiere de haber elegido la opcion 3 previamente, sera direccionado a esa.\n");
+			opcionMenu = 3;
+		}
+
+		while(opcionMenu == 3 && banderaOpcionUno == 0 && banderaOpcionDos == 0)
+		{
+			printf("\nPara usar la opcion 3 requiere de haber elegido la opcion 1 y/o 2 previamente, elija una de esas: ");
+			scanf("%d",&opcionMenu);
+		}
+
+		while(opcionMenu == 5 && contador>0)
+		{
+			printf("\nComo ya hay datos cargados no se puede seleccionar la opcion 5, elija otra opcion: ");
+			scanf("%d",&opcionMenu);
+		}
+
+
 
 		switch(opcionMenu)
 		{
+
 			case 1:
 				kilometros = eInt();
-				vIntMa(kilometros, 0);
+				vIntMa(kilometros, 1);
+				banderaOpcionUno = 1;
+				contador++;
 				break;
 
 			case 2:
@@ -76,7 +156,7 @@ int main(void) {
 					precioVuelo = eFloat();
 					vFloatMa(precioVuelo, 0);
 
-					printf("Si el precio corresponde a Aerolineas, presione \"y\", si pertenece a Latam \"z\": ");
+					printf("Si el precio corresponde a Aerolineas presione \"y\", si pertenece a Latam \"z\": ");
 					fflush(stdin);
 					scanf("%c", &direccionDinero);
 
@@ -85,31 +165,33 @@ int main(void) {
 					if(direccionDinero == 'y')
 					{
 						precioAerolineas = precioVuelo;
+						banderaPrecioAerolineas = 1;
 					}
 					else
 					{
 						precioLatam = precioVuelo;
+						banderaPrecioLatam = 1;
 					}
 
 					repetir = reIngresar();
 
 				}while(repetir == 0);
 
+				contador++;
+				banderaOpcionDos = 1;
 				break;
 
 			case 3:
 				if(precioAerolineas > 0)
 				{
 					opcionTres(precioAerolineas, &precioDescuentoAerolineas, descuento, &precioAumentoAerolineas, aumento, &precioBitcoinAerolineas, valorBitcoin, &precioUnitarioAerolineas, kilometros);
-					banderaAerolineas = 1;
 				}
 				if(precioLatam > 0)
 				{
 					opcionTres(precioLatam, &precioDescuentoLatam, descuento, &precioAumentoLatam, aumento, &precioBitcoinLatam, valorBitcoin, &precioUnitarioLatam, kilometros);
-					banderaLatam = 1;
 				}
 
-				if(banderaLatam == banderaAerolineas)
+				if(banderaPrecioLatam == banderaPrecioAerolineas)
 				{
 					diferenciaPrecio = precioAerolineas - precioLatam;
 					if(diferenciaPrecio <0)
@@ -117,11 +199,13 @@ int main(void) {
 						diferenciaPrecio*=-1;
 					}
 				}
+				contador++;
+				banderaOpcionTres = 1;
 				break;
 
 			case 4:
 				printf("\nKMs Ingresados: %d", kilometros);
-				if(banderaAerolineas==1)
+				if(banderaPrecioAerolineas==1)
 				{
 					opcionCuatroAerolineas(precioAerolineas, precioDescuentoAerolineas, precioAumentoAerolineas, precioBitcoinAerolineas, precioUnitarioAerolineas);
 				}
@@ -130,7 +214,7 @@ int main(void) {
 					opcionCuatroAerolineasVacio();
 				}
 
-				if(banderaLatam == 1)
+				if(banderaPrecioLatam == 1)
 				{
 					opcionCuatroLatam(precioLatam, precioDescuentoLatam, precioAumentoLatam, precioBitcoinLatam, precioUnitarioLatam);
 				}
@@ -139,9 +223,16 @@ int main(void) {
 					opcionCuatroLatamVacio();
 				}
 				printf("\n\nLa diferencia de precio es: %.2f ", diferenciaPrecio);
+
+				banderaOpcionUno = 0;
+				banderaOpcionDos = 0;
+				banderaOpcionTres = 0;
+				banderaPrecioLatam = 0;
+				banderaPrecioAerolineas = 0;
 				break;
 
 			case 5:
+				printf("\nKMs ingresados: %d km", kilometrosForzado);
 				opcionTres(precioAerolineasForzado, &precioDescuentoAerolineas, descuento, &precioAumentoAerolineas, aumento, &precioBitcoinAerolineas, valorBitcoin, &precioUnitarioAerolineas, kilometrosForzado);
 				opcionCuatroAerolineas(precioAerolineasForzado, precioDescuentoAerolineas, precioAumentoAerolineas, precioBitcoinAerolineas, precioUnitarioAerolineas);
 
@@ -156,7 +247,7 @@ int main(void) {
 			default:
 				break;
 		}
-	}while(opcionMenu<4);
+	}while(opcionMenu<6);
 	/*
 	int opcion;
 	int kilometros;

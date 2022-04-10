@@ -69,7 +69,7 @@ float vFloatMa(int numero, float limite)
 
 int vIntMa(int numero, int limite)
 {
-	while(numero<limite+1)
+	while(numero<limite)
 	{
 		printf("\nEl dato ingresado es incorrecto, este tiene que ser mayor a \"%d\" : ", limite);
 		scanf("%d", &numero);
