@@ -6,6 +6,7 @@
  */
 
 #include <stdio.h>
+#include <stdlib.h>
 
 char vChar(char letra ,char opcionUno, char opcionDos)
 {
@@ -27,7 +28,7 @@ float vFloatMaIgual(float numero, float limite)
 {
 	while(numero<limite)
 		{
-			printf("El dato ingresado es incorrecto, este tiene que ser mayor igual a \"%.2f\": ", limite);
+			printf("El dato ingresado es incorrecto, este tiene que ser mayor o igual a \"%.2f\": ", limite);
 			scanf("%f", &numero);
 		}
 
