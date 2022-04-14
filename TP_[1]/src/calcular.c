@@ -1,8 +1,8 @@
 /*
- * calcular.c
- *
- *  Created on: 7 abr. 2022
- *      Author: thiag
+	Alumno: Thiago Lisandro Porfirio
+	Div: D
+	Fecha de entrega: 16/04/2022 23:59
+ 	DNI: 44020889
  */
 float decremento(int valorBase,float descenso)
 {
@@ -18,14 +18,14 @@ float incremento(int valorBase, float ascenso)
 	return resultado;
 }
 
-float restaD(float valorUno, float valorDos)
+float restaFloat(float valorUno, float valorDos)
 {
 	float resultado;
 	resultado = valorUno - valorDos;
 	return resultado;
 }
 
-float divisionD(float dividendo,float divisor)
+float divisionFloat(float dividendo,float divisor)
 {
 	float resultado;
 	resultado = dividendo / divisor;

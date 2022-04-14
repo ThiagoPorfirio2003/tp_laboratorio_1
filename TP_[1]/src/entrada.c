@@ -1,8 +1,8 @@
 /*
- * entrada.c
- *
- *  Created on: 10 abr. 2022
- *      Author: thiag
+	Alumno: Thiago Lisandro Porfirio
+	Div: D
+	Fecha de entrega: 16/04/2022 23:59
+ 	DNI: 44020889
  */
 
 #include <stdio.h>

@@ -1,8 +1,8 @@
 /*
- * calcular.h
- *
- *  Created on: 8 abr. 2022
- *      Author: thiag
+	Alumno: Thiago Lisandro Porfirio
+	Div: D
+	Fecha de entrega: 16/04/2022 23:59
+ 	DNI: 44020889
  */
 
 #ifndef CALCULAR_H_
@@ -36,7 +36,7 @@ float incremento(int valorBase, float ascenso);
 /// @param valorUno
 /// @param valorDos
 /// @return
-float restaD(float valorUno, float valorDos);
+float restaFloat(float valorUno, float valorDos);
 
 /// @fn float divisionD(float, float)
 /// @brief
@@ -46,7 +46,7 @@ float restaD(float valorUno, float valorDos);
 /// @param dividendo
 /// @param divisor
 /// @return
-float divisionD(float dividendo,float divisor);
+float divisionFloat(float dividendo,float divisor);
 
 
 #endif /* CALCULAR_H_ */
