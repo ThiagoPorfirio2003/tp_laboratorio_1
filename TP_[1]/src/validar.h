@@ -50,6 +50,18 @@ int vIntMaIgual(int numero, int limite);
 int vIntMeIgual(int numero, int limite);
 //Valida que un Int sea igual o menor al limite que le ingresemos, en caso de no cumplir ninguna de las condiciones se debera pedir un valor que si lo haga
 
+/// @brief
+///
+/// @pre
+/// @post
+/// @param numero
+/// @param minimo
+/// @param maximo
+/// @return
+int vIntRango(int numero, int minimo, int maximo);
+//Valida que un Int este dentro de un rango
+
+
 /// @fn int reIngresar(void)
 /// @brief
 ///

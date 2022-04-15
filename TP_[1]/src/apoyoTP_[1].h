@@ -8,6 +8,8 @@
 #ifndef APOYOTP__1__H_
 #define APOYOTP__1__H_
 
+//Esta biblioteca es exclusiva del TP[1]
+
 /// @brief
 ///
 /// @pre
@@ -28,25 +30,12 @@ void opcionTres(float precioEmpresa, float* uDescuento, float vDescuento, float*
 ///
 /// @pre
 /// @post
-/// @param precio
 /// @param mDescuento
 /// @param mIntereses
 /// @param mBitcoin
 /// @param mKilometros
-void opcionCuatroAerolineas(float precio, float mDescuento, float mIntereses, float mBitcoin, float mKilometros);
-//Con esta funcion muestro todos los datos de Aerolineas que calculo en la opcion 3
-
-/// @brief
-///
-/// @pre
-/// @post
-/// @param precio
-/// @param mDescuento
-/// @param mIntereses
-/// @param mBitcoin
-/// @param mKilometros
-void opcionCuatroLatam(float precio, float mDescuento, float mIntereses, float mBitcoin, float mKilometros);
-//Con esta funcion muestro todos los datos de Latam que calculo en la opcion 3
+void opcionCuatro(float mDescuento, float mIntereses, float mBitcoin, float mKilometros);
+//Con esta funcion muestro todos los datos que se calcularon en la opcion 3
 
 
 #endif /* APOYOTP__1__H_ */

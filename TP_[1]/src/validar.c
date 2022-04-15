@@ -55,6 +55,16 @@ int vIntMeIgual(int numero, int limite)
 	return numero;
 }
 
+int vIntRango(int numero, int minimo, int maximo)
+{
+	while(numero < minimo || numero > maximo)
+		{
+			printf("El dato ingresado es incorrecto, este tiene que ser mayor/igual a \"%d\" o menor/igual a \"%d\": ", minimo, maximo);
+			scanf("%d", &numero);
+		}
+	return numero;
+}
+
 int reIngresar(void)
 {
 	int opcion;

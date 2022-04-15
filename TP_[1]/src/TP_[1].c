@@ -16,9 +16,6 @@ int main(void) {
 
 	int opcionMenu;
 	int kilometros;
-	int precioLatamForzado;
-	int precioAerolineasForzado;
-	int kilometrosForzado;
 	int banderaOpcionUno;
 	int banderaOpcionDos;
 	int banderaOpcionTres;
@@ -41,7 +38,10 @@ int main(void) {
 	float precioUnitarioLatam;
 	float diferenciaPrecio;
 
-	kilometros = 0;
+	kilometros = 7090;
+	precioAerolineas = 162965;
+	precioLatam = 159339;
+
 	descuento = 10;
 	aumento = 25;
 	valorBitcoin = 4606954.55;
@@ -51,11 +51,6 @@ int main(void) {
 	banderaOpcionDos = 0;
 	banderaOpcionTres = 0;
 	contador = 0;
-
-	precioLatamForzado = 159339;
-	precioAerolineasForzado = 162965;
-	kilometrosForzado = 7090;
-
 
 	do{
 		if(contador > 0)
@@ -76,7 +71,7 @@ int main(void) {
 
 		if(banderaOpcionDos == 1)
 		{
-			printf("$%.2f, Latam= $%.2f)", precioAerolineas, precioLatam);
+			printf(" $%.2f, Latam= $%.2f)", precioAerolineas, precioLatam);
 		}
 		else
 		{
@@ -108,7 +103,7 @@ int main(void) {
 		printf("\n\n¿Que opcion desea realizar? ");
 
 		opcionMenu = eInt();
-		opcionMenu = vIntMeIgual(opcionMenu, 6);
+		opcionMenu = vIntRango(opcionMenu, 1, 6);
 
 		switch(opcionMenu)
 		{
@@ -169,6 +164,8 @@ int main(void) {
 						diferenciaPrecio*=-1;
 					}
 					banderaOpcionTres = 1;
+
+					printf("\nLos costos han sido calculados.\n");
 				}
 				else
 				{
@@ -182,8 +179,11 @@ int main(void) {
 				{
 					printf("\nKMs Ingresados: %d", kilometros);
 
-						opcionCuatroAerolineas(precioAerolineas, precioDescuentoAerolineas, precioAumentoAerolineas, precioBitcoinAerolineas, precioUnitarioAerolineas);
-						opcionCuatroLatam(precioLatam, precioDescuentoLatam, precioAumentoLatam, precioBitcoinLatam, precioUnitarioLatam);
+					printf("\n\nPrecio Aerolineas: $%.2f", precioAerolineas);
+					opcionCuatro(precioDescuentoAerolineas, precioAumentoAerolineas, precioBitcoinAerolineas, precioUnitarioAerolineas);
+
+					printf("\n\nPrecio Latam: $%.2f", precioLatam);
+					opcionCuatro(precioDescuentoLatam, precioAumentoLatam, precioBitcoinLatam, precioUnitarioLatam);
 
 					printf("\n\nLa diferencia de precio es: %.2f \n\n", diferenciaPrecio);
 
@@ -191,6 +191,10 @@ int main(void) {
 					banderaOpcionDos = 0;
 					banderaOpcionTres = 0;
 					contador = 0;
+
+					kilometros = 7090;
+					precioAerolineas = 162965;
+					precioLatam = 159339;
 				}
 				else
 				{
@@ -202,18 +206,20 @@ int main(void) {
 			case 5:
 				if(contador == 0)
 				{
-					printf("\nKMs ingresados: %d km", kilometrosForzado);
-					opcionTres(precioAerolineasForzado, &precioDescuentoAerolineas, descuento, &precioAumentoAerolineas, aumento, &precioBitcoinAerolineas, valorBitcoin, &precioUnitarioAerolineas, kilometrosForzado);
-					opcionCuatroAerolineas(precioAerolineasForzado, precioDescuentoAerolineas, precioAumentoAerolineas, precioBitcoinAerolineas, precioUnitarioAerolineas);
+					printf("\nCarga Forzada:\n");
+					printf("\nKMs ingresados: %d km", kilometros);
 
-					opcionTres(precioLatamForzado, &precioDescuentoLatam, descuento, &precioAumentoLatam, aumento, &precioBitcoinLatam, valorBitcoin, &precioUnitarioLatam, kilometrosForzado);
-					opcionCuatroLatam(precioLatamForzado, precioDescuentoLatam, precioAumentoLatam, precioBitcoinLatam, precioUnitarioLatam);
+					printf("\n\nPrecio Aerolineas: $%.2f", precioAerolineas);
 
-					diferenciaPrecio = restaFloat(precioAerolineasForzado, precioLatamForzado);
+					opcionTres(precioAerolineas, &precioDescuentoAerolineas, descuento, &precioAumentoAerolineas, aumento, &precioBitcoinAerolineas, valorBitcoin, &precioUnitarioAerolineas, kilometros);
+					opcionCuatro(precioDescuentoAerolineas, precioAumentoAerolineas, precioBitcoinAerolineas, precioUnitarioAerolineas);
 
-					contador++;
+					printf("\n\nPrecio Latam: $%.2f", precioLatam);
+					opcionTres(precioLatam, &precioDescuentoLatam, descuento, &precioAumentoLatam, aumento, &precioBitcoinLatam, valorBitcoin, &precioUnitarioLatam, kilometros);
+					opcionCuatro(precioDescuentoLatam, precioAumentoLatam, precioBitcoinLatam, precioUnitarioLatam);
 
-					printf("\n\nLa diferencia de precio es: %.2f \n", diferenciaPrecio);
+					diferenciaPrecio = restaFloat(precioAerolineas, precioLatam);
+					printf("\n\nLa diferencia de precio es: %.2f \n\n", diferenciaPrecio);
 				}
 
 				else
