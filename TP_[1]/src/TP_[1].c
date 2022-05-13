@@ -211,6 +211,9 @@ int main(void) {
 
 					printf("\n\nPrecio Aerolineas: $%.2f", precioAerolineas);
 
+					// variable : auxiliar = direccion1
+					// auxiliar = direccion2
+
 					opcionTres(precioAerolineas, &precioDescuentoAerolineas, descuento, &precioAumentoAerolineas, aumento, &precioBitcoinAerolineas, valorBitcoin, &precioUnitarioAerolineas, kilometros);
 					opcionCuatro(precioDescuentoAerolineas, precioAumentoAerolineas, precioBitcoinAerolineas, precioUnitarioAerolineas);
 
