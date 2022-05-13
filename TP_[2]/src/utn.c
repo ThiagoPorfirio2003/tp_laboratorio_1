@@ -64,55 +64,7 @@ int verificarSerInt(char* cadena)
 	return retorno;
 }
 
-/*
-int verificarSerIntCero(char* cadena)
-{
-	int retorno;
-	int i;
-	retorno = -1;
-	i=0;
 
-	if(cadena != NULL)
-	{
-		retorno=1;
-		while(cadena[i]!= '\0')
-		{
-			if((isdigit(cadena[i]) == 0 && cadena[i] != '-' )|| (i != 0 && cadena[i] == '-'))
-			{
-				break;
-			}
-			i++;
-		}
-		if(cadena[i] == '\0')
-		{
-			retorno = 0;
-		}
-	}
-	return retorno;
-}
-
-int getIntCero(int* direccionInt, int tamanio,char* mensaje)
-{
-	int retorno;
-	char bufferInt[256];
-	int estadoError;
-
-	retorno =-1;
-
-	if(tamanio > 0 && direccionInt !=NULL && mensaje !=NULL)
-	{
-		retorno =1;
-		printf("%s", mensaje);
-		estadoError = myGets(bufferInt, tamanio);
-		if(verificarSerIntCero(bufferInt) == 0 && estadoError ==0)
-		{
-			*direccionInt = atoi(bufferInt);
-		}
-	}
-	return retorno;
-}
-
-*/
 
 int getInt(int* direccionInt, int tamanio,char* mensaje)
 {
@@ -363,3 +315,54 @@ int getIntRango(int* direccionInt, int tamanio, char* mensaje, char* mensajeErro
 	return retorno;
 }
 
+
+
+/*
+int verificarSerIntCero(char* cadena)
+{
+	int retorno;
+	int i;
+	retorno = -1;
+	i=0;
+
+	if(cadena != NULL)
+	{
+		retorno=1;
+		while(cadena[i]!= '\0')
+		{
+			if((isdigit(cadena[i]) == 0 && cadena[i] != '-' )|| (i != 0 && cadena[i] == '-'))
+			{
+				break;
+			}
+			i++;
+		}
+		if(cadena[i] == '\0')
+		{
+			retorno = 0;
+		}
+	}
+	return retorno;
+}
+
+int getIntCero(int* direccionInt, int tamanio,char* mensaje)
+{
+	int retorno;
+	char bufferInt[256];
+	int estadoError;
+
+	retorno =-1;
+
+	if(tamanio > 0 && direccionInt !=NULL && mensaje !=NULL)
+	{
+		retorno =1;
+		printf("%s", mensaje);
+		estadoError = myGets(bufferInt, tamanio);
+		if(verificarSerIntCero(bufferInt) == 0 && estadoError ==0)
+		{
+			*direccionInt = atoi(bufferInt);
+		}
+	}
+	return retorno;
+}
+
+*/

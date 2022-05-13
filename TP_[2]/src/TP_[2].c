@@ -17,14 +17,42 @@
 
 int main(void) {
 	setbuf(stdout, NULL);
-	char punto[30];
-	char acento = 'I';
+	char punto[] = "Juána";
+	char acento[] = "Juana";
 	int error;
+	// Prueba
 
+	for(int i=0; i< 5; i++)
+		{
+			if(isalpha(punto[i])!=0)
+			{
+				printf("\nEl caracter si es una letra: %c", punto[i]);
+			}
+			else
+			{
+				printf("\nEl caracter NO es una letra: %c", punto[i]);
+			}
+		}
+
+
+
+	error = getNombre(punto, 30, "Ingrese el nombre: ");
+		if(error ==0)
+			{
+				printf("\nEl nombre es: %s", punto);
+			}
+			if(error == -1)
+			{
+				printf("\nHubo un error de direccion");
+			}
+			if(error ==1)
+			{
+				printf("\nHubo un error despues de la direccion");
+			}
 
 
 	/*
-	char punto[30] = "juaÑa";
+	char punto[30] = "Perez";
 	char acento = 'I';
 	int error;
 
@@ -54,19 +82,6 @@ int main(void) {
 	}
 
 	//error = verificarSerNombre(punto);
-	error = getNombre(punto, 30, "Ingrese el nombre: ");
-	if(error ==0)
-		{
-			printf("\nEl nombre es: %s", punto);
-		}
-		if(error == -1)
-		{
-			printf("\nHubo un error de direccion");
-		}
-		if(error ==1)
-		{
-			printf("\nHubo un error despues de la direccion");
-		}
 
 
 	printf("%.2f", juan);
