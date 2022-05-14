@@ -64,8 +64,6 @@ int verificarSerInt(char* cadena)
 	return retorno;
 }
 
-
-
 int getInt(int* direccionInt, int tamanio,char* mensaje)
 {
 	int retorno;
@@ -99,7 +97,7 @@ int verificarSerFloat(char* cadena)
 	i=0;
 	contadorPuntos=0;
 
-	if(cadena != NULL)
+	if(cadena != NULL && cadena[0] != '0')
 	{
 		retorno = 1;
 
@@ -157,7 +155,7 @@ int verificarSerPalabra(char* direccionPalabra)
 	if(direccionPalabra != NULL)
 	{
 		retorno = 1;
-		while(isupper(direccionPalabra[i]) || islower(direccionPalabra[i]))
+		while(isalpha(direccionPalabra[i]) !=0 || direccionPalabra[i] == 'á' || direccionPalabra[i] == 'é' || direccionPalabra[i] == 'í' || direccionPalabra[i] == 'ó' || direccionPalabra[i] == 'ú' || direccionPalabra[i] == 'Á' || direccionPalabra[i] == 'É' || direccionPalabra[i] == 'Í' || direccionPalabra[i] == 'Ó' || direccionPalabra[i] == 'Ú' || direccionPalabra[i] == 'ñ' || direccionPalabra[i] == 'Ñ')
 		{
 			i++;
 		}
@@ -184,53 +182,28 @@ int getPalabra(char* direccionPalabra, int tamanio, char* mensaje)
 		if(estadoError ==0 && verificarSerPalabra(bufferPalabra) ==0)
 		{
 			strcpy(direccionPalabra, bufferPalabra);
-			retorno=0;
+			retorno = 0;
+
 		}
 	}
 	return retorno;
 }
 
-int verificarSerNombre(char* direccionNombre)
+int transformarMinusculaAMayuscula(char* direccionCaracter)
 {
 	int retorno;
-	int i;
+	char caracter;
 
+	caracter = *direccionCaracter;
 	retorno =-1;
-	i=1;
-
-	if(direccionNombre !=NULL && isupper(direccionNombre[0]))
+	if(direccionCaracter !=NULL)
 	{
-		retorno=1;
-		while(islower(direccionNombre[i]))
+		retorno =0;
+		if(islower(caracter) !=0 || caracter == 'á' || caracter == 'é' || caracter == 'í' || caracter == 'ó' || caracter == 'ú' || caracter == 'ñ')
 		{
-			i++;
+			*direccionCaracter = toupper(caracter);
 		}
-		if(direccionNombre[i] == '\0')
-		{
-			retorno =0;
-		}
-	}
-	return retorno;
-}
 
-int getNombre(char* direccionNombre, int tamanio, char* mensaje)
-{
-	int retorno;
-	char bufferNombre[256];
-	int estadoError;
-
-	retorno=-1;
-
-	if(direccionNombre != NULL && tamanio>0 && mensaje !=NULL)
-	{
-		retorno=1;
-		printf("%s", mensaje);
-		estadoError = myGets(bufferNombre, tamanio);
-		if(estadoError == 0 && verificarSerNombre(bufferNombre) ==0)
-		{
-			strcpy(direccionNombre, bufferNombre);
-			retorno =0;
-		}
 	}
 	return retorno;
 }
@@ -282,20 +255,21 @@ int getCadenaCaracteres(char* direccionCadena, int tamanio, char* mensaje)
 	return retorno;
 }
 
-int getIntRango(int* direccionInt, int tamanio, char* mensaje, char* mensajeError, int minimo, int maximo, int intentos)
+int getIntRango(int* direccionInt, int tamanio, char* mensaje, char* mensajeError, float minimo, float maximo, int intentos, char* mensajeSinIntentos)
 {
 	int retorno;
 	int chequeoError;
 	int bufferNumero;
 	int contadorIntentos;
 	retorno = -1;
-	contadorIntentos=0;
+	contadorIntentos= intentos;
 
 
 	if(direccionInt != NULL && mensaje != NULL && mensajeError !=NULL && minimo < maximo && minimo!=maximo && tamanio > 0 && intentos > 0)
 	{
 		retorno = 1;
-		do
+
+		while(contadorIntentos!=0)
 		{
 			chequeoError = getInt(&bufferNumero, tamanio, mensaje);
 			if(chequeoError == 0 && bufferNumero >= minimo  && bufferNumero <= maximo)
@@ -306,16 +280,258 @@ int getIntRango(int* direccionInt, int tamanio, char* mensaje, char* mensajeErro
 			}
 			else
 			{
-				printf("%s%d", mensajeError,contadorIntentos);
 				contadorIntentos--;
+				printf("%s%d\n", mensajeError, contadorIntentos);
 			}
-
-		}while(contadorIntentos!=intentos);
+		}
+		if(contadorIntentos == 0)
+		{
+			printf("%s", mensajeSinIntentos);
+		}
 	}
 	return retorno;
 }
 
+int getFloatRango(float* direccionFloat, int tamanio, char* mensaje, char* mensajeError, float minimo, float maximo, int intentos, char* mensajeSinIntentos)
+{
+	int retorno;
+	int chequeoError;
+	float bufferNumero;
+	int contadorIntentos;
+	retorno = -1;
+	contadorIntentos= intentos;
 
+
+	if(direccionFloat != NULL && mensaje != NULL && mensajeError !=NULL && minimo < maximo && minimo!=maximo && tamanio > 0 && intentos > 0)
+	{
+		retorno = 1;
+
+		while(contadorIntentos!=0)
+		{
+			chequeoError = getFloat(&bufferNumero, tamanio, mensaje);
+			if(chequeoError == 0 && bufferNumero >= minimo  && bufferNumero <= maximo)
+			{
+				*direccionFloat = bufferNumero;
+				retorno=0;
+				break;
+			}
+			else
+			{
+				contadorIntentos--;
+				printf("%s%d\n", mensajeError, contadorIntentos);
+			}
+		}
+		if(contadorIntentos == 0)
+		{
+				printf("%s", mensajeSinIntentos);
+		}
+	}
+		return retorno;
+}
+
+int getIntMayorA(int* direccionInt, int tamanio, char* mensaje, char* mensajeError, int minimo, int intentos, char* mensajeSinIntentos)
+{
+	int retorno;
+	int chequeoError;
+	int bufferNumero;
+	int contadorIntentos;
+	retorno = -1;
+	contadorIntentos= intentos;
+
+	if(direccionInt != NULL && mensaje != NULL && mensajeError !=NULL && tamanio > 0 && intentos > 0)
+	{
+		retorno = 1;
+		while(contadorIntentos!=0)
+		{
+			chequeoError = getInt(&bufferNumero, tamanio, mensaje);
+			if(chequeoError == 0 && bufferNumero >= minimo)
+			{
+				*direccionInt = bufferNumero;
+				retorno=0;
+				break;
+			}
+			else
+			{
+				contadorIntentos--;
+				printf("%s%d\n", mensajeError, contadorIntentos);
+			}
+		}
+		if(contadorIntentos == 0)
+		{
+			printf("%s", mensajeSinIntentos);
+		}
+	}
+		return retorno;
+}
+
+int getFloatMayorA(float* direccionFloat, int tamanio, char* mensaje, char* mensajeError, float minimo, int intentos, char* mensajeSinIntentos)
+{
+	int retorno;
+	int chequeoError;
+	float bufferNumero;
+	int contadorIntentos;
+	retorno = -1;
+	contadorIntentos= intentos;
+
+
+	if(direccionFloat != NULL && mensaje != NULL && mensajeError !=NULL && tamanio > 0 && intentos > 0)
+	{
+		retorno = 1;
+
+		while(contadorIntentos!=0)
+		{
+			chequeoError = getFloat(&bufferNumero, tamanio, mensaje);
+			if(chequeoError == 0 && bufferNumero >= minimo)
+			{
+				*direccionFloat = bufferNumero;
+				retorno=0;
+				break;
+			}
+			else
+			{
+				contadorIntentos--;
+				printf("%s%d\n", mensajeError, contadorIntentos);
+			}
+		}
+		if(contadorIntentos == 0)
+		{
+				printf("%s", mensajeSinIntentos);
+		}
+	}
+		return retorno;
+}
+
+int getIntMenorA(int* direccionInt, int tamanio, char* mensaje, char* mensajeError, int maximo, int intentos, char* mensajeSinIntentos)
+{
+	int retorno;
+	int chequeoError;
+	int bufferNumero;
+	int contadorIntentos;
+	retorno = -1;
+	contadorIntentos= intentos;
+
+
+	if(direccionInt != NULL && mensaje != NULL && mensajeError !=NULL && tamanio > 0 && intentos > 0)
+	{
+		retorno = 1;
+
+		while(contadorIntentos!=0)
+		{
+			chequeoError = getInt(&bufferNumero, tamanio, mensaje);
+			if(chequeoError == 0  && bufferNumero <= maximo)
+			{
+				*direccionInt = bufferNumero;
+				retorno=0;
+				break;
+			}
+			else
+			{
+				contadorIntentos--;
+				printf("%s%d\n", mensajeError, contadorIntentos);
+			}
+		}
+		if(contadorIntentos == 0)
+		{
+			printf("%s", mensajeSinIntentos);
+		}
+	}
+	return retorno;
+}
+
+int getFloatMenorA(float* direccionFloat, int tamanio, char* mensaje, char* mensajeError, float maximo, int intentos, char* mensajeSinIntentos)
+{
+	int retorno;
+	int chequeoError;
+	float bufferNumero;
+	int contadorIntentos;
+	retorno = -1;
+	contadorIntentos= intentos;
+
+
+	if(direccionFloat != NULL && mensaje != NULL && mensajeError !=NULL && tamanio > 0 && intentos > 0)
+	{
+		retorno = 1;
+
+		while(contadorIntentos!=0)
+		{
+			chequeoError = getFloat(&bufferNumero, tamanio, mensaje);
+			if(chequeoError == 0 && bufferNumero <= maximo)
+			{
+				*direccionFloat = bufferNumero;
+				retorno=0;
+				break;
+			}
+			else
+			{
+				contadorIntentos--;
+				printf("%s%d\n", mensajeError, contadorIntentos);
+			}
+		}
+		if(contadorIntentos == 0)
+		{
+				printf("%s", mensajeSinIntentos);
+		}
+	}
+		return retorno;
+}
+/*
+int verificarSerNombre(char* direccionNombre)
+{
+	int retorno;
+	int i;
+
+	retorno =-1;
+	i=0;
+
+	if(direccionNombre !=NULL)
+	{
+		retorno=1;
+
+		while(isalpha(direccionNombre[i]) !=0 && direccionNombre[i] != 'á' && direccionNombre[i] != 'é' && direccionNombre[i] != 'í' && direccionNombre[i] != 'ó' && direccionNombre[i] != 'ú' && direccionNombre[i] != 'Á' && direccionNombre[i] != 'É' && direccionNombre[i] != 'Í' && direccionNombre[i] != 'Ó' && direccionNombre[i] != 'Ú' && direccionNombre[i] != 'ñ' && direccionNombre[i] != 'Ñ')
+		{
+			i++;
+		}
+		if(direccionNombre[i] == '\0')
+		{
+			retorno =0;
+		}
+		if(direccionNombre[0] == 'ñ')
+		{
+			direccionNombre[0] = 'Ñ';
+		}
+		else
+		{
+			if(islower(direccionNombre[0]) == 0)
+			{
+				direccionNombre[0] = toupper(direccionNombre[0]);
+			}
+		}
+	}
+	return retorno;
+}
+
+int getNombre(char* direccionNombre, int tamanio, char* mensaje)
+{
+	int retorno;
+	char bufferNombre[256];
+	int estadoError;
+
+	retorno=-1;
+
+	if(direccionNombre != NULL && tamanio>0 && mensaje !=NULL)
+	{
+		retorno=1;
+		printf("%s", mensaje);
+		estadoError = myGets(bufferNombre, tamanio);
+		if(estadoError == 0 && verificarSerNombre(bufferNombre) ==0)
+		{
+			strcpy(direccionNombre, bufferNombre);
+			retorno =0;
+		}
+	}
+	return retorno;
+}
+*/
 
 /*
 int verificarSerIntCero(char* cadena)
@@ -366,3 +582,5 @@ int getIntCero(int* direccionInt, int tamanio,char* mensaje)
 }
 
 */
+
+
