@@ -11,8 +11,8 @@
 typedef struct
 {
 	int id;
-	int name[51];
-	int lastName[51];
+	char name[51];
+	char lastName[51];
 	float price;
 	char flycode[10];
 	int typePassenger;
@@ -44,7 +44,7 @@ int initPassengers(Passenger* list, int len);
 * \return int Return (-1) if Error [Invalid length or NULL pointer or without
 free space] - (0) if Ok
 */
-int addPassenger(Passenger* list, int len, int id, char name[],char lastName[],float price,int typePassenger, char flycode[]);
+int addPassenger(Passenger* list, int len, int id, char name[],char lastName[],float price,int typePassenger, int statusFlight, char flycode[]);
 
 /** \brief find a Passenger by Id en returns the index position in array.
 *
@@ -82,7 +82,7 @@ int sortPassengers(Passenger* list, int len, int order);
 * \param length int
 * \return int
 */
-int printPassenger(Passenger* list, int length);
+int printPassenger(Passenger* list, int length, int condicionAparicion);
 
 /** \brief Sort the elements in the array of passengers, the argument order
 indicate UP or DOWN order
@@ -93,3 +93,12 @@ indicate UP or DOWN order
 * \return int Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
 */
 int sortPassengerByFlycode(Passenger* list, int len, int order);
+
+int modifyPassengerById(Passenger* list, int posicionPasajero, int opcion, int tamanioNombre, int intentos, float precioMinimo, float precioMaximo);
+
+int calcularPromedioyCantidadEncimaPromedio(Passenger* list, float* promedioPrecios, int* cantidadPreciosSobrePromedio, int cantidadPasajerosTotal, int cantidadPasajerosActual,float acumuladorPrecio);
+
+int acumuladorPrecio(Passenger* list, float* acumulador, int cantidadPasajeros);
+
+int reasignarValoresParaComparar(Passenger* list, int cantidadPasajeros);
+
