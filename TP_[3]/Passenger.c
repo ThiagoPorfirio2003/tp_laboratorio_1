@@ -11,8 +11,7 @@ Passenger* Passenger_new()
 	Passenger* nuevoPasajero;
 
 	nuevoPasajero = ((void*)0);
-	nuevoPasajero = (Passenger*) malloc(sizeof(Passenger));
-
+	nuevoPasajero = (Passenger*) malloc(sizeof(Passenger)*2);
 	if(nuevoPasajero != ((void*)0))
 	{
 		Passenger_setId(nuevoPasajero, 0);
@@ -31,18 +30,18 @@ Passenger* Passenger_newParametros(int* idStr,char* nombreStr, char* apellidoStr
 {
 	Passenger* nuevoPasajero;
 
-	nuevoPasajero = ((void*)0);
-	nuevoPasajero = (Passenger*) malloc(sizeof(Passenger));
+	nuevoPasajero = Passenger_new();
 
-
-	if(nuevoPasajero != ((void*)0) && idStr != ((void*)0) &&
+	if(nuevoPasajero != ((void*)0) &&
+			//idStr != ((void*)0) &&
 			nombreStr != ((void*)0) &&
 			apellidoStr != ((void*)0) &&
-			precioStr != ((void*)0) &&
-			tipoPasajeroStr != ((void*)0) &&
-			codigoVueloStr != ((void*)0) &&
-			statusFlight != ((void*)0))
+			//precioStr != ((void*)0) &&
+			//tipoPasajeroStr != ((void*)0) &&
+			codigoVueloStr != ((void*)0))// &&
+			//statusFlight != ((void*)0))
 	{
+
 		Passenger_setId(nuevoPasajero, *idStr);
 		Passenger_setNombre(nuevoPasajero, nombreStr);
 		Passenger_setApellido(nuevoPasajero, apellidoStr);
@@ -54,14 +53,7 @@ Passenger* Passenger_newParametros(int* idStr,char* nombreStr, char* apellidoStr
 	else
 	{
 		nuevoPasajero= ((void*)0);
-		if(nuevoPasajero == ((void*)0))
-		{
-			printf("new NULL");
-		}
-
 	}
-
-
 
 	return nuevoPasajero;
 }
@@ -106,7 +98,9 @@ int Passenger_setNombre(Passenger* this,char* nombre)
 
 	if(this != ((void*)0) && nombre != ((void*)0) /*&& !utn_verificarSerNombre(nombre)*/)
 	{
-		strncpy(this->nombre, nombre,50);
+		strcpy(this->nombre, nombre);
+//		printf("\nnomnre : %s\n", nombre);
+	//	printf("nombre Flecha : %s\n\n", this->nombre);
 		retorno=0;
 	}
 
@@ -121,7 +115,9 @@ int Passenger_getNombre(Passenger* this,char* nombre)
 
 	if(this != ((void*)0) && nombre != ((void*)0) /*&& !utn_verificarSerNombre(nombre)*/)
 	{
-		strncpy(nombre, this->nombre,50);
+		strcpy(nombre, this->nombre);
+	//	printf("\n\nomnre get: %s\n", nombre);
+		//printf("nombre Flecha get: %s\n\n", this->nombre);
 		retorno=0;
 	}
 
@@ -137,7 +133,9 @@ int Passenger_setApellido(Passenger* this,char* apellido)
 
 	if(this != ((void*)0) && apellido != ((void*)0) /*&& !utn_verificarSerNombre(apellido)*/)
 	{
-		strncpy(this->apellido, apellido,50);
+		strcpy(this->apellido, apellido);
+	//	printf("\n\nAPELLIDO: %s\n", apellido);
+		//printf("APELLIDO Flecha: %s\n\n", this->apellido);
 		retorno=0;
 	}
 
@@ -152,7 +150,9 @@ int Passenger_getApellido(Passenger* this,char* apellido)
 
 	if(this != ((void*)0) && apellido != ((void*)0) /* && !utn_verificarSerNombre(apellido)*/)
 	{
-		strncpy(apellido, this->apellido,50);
+		strcpy(apellido, this->apellido);
+	//	printf("\n\nAPELLIDO GET: %s\n", apellido);
+		//printf("APELLIDO Flecha GET: %s\n\n", this->apellido);
 		retorno=0;
 	}
 

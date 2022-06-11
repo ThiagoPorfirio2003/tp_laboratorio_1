@@ -30,18 +30,6 @@ int main()
     int option;
     int contadorId = 0;
 
-    Passenger* nuevoPasajero=Passenger_new();
-
-    printf("%d\n\n", ll_len(listaPasajeros));
-    printf("%d\n",ll_add(listaPasajeros, nuevoPasajero));
-    printf("%d\n\n", ll_len(listaPasajeros));
-    printf("%d\n",ll_add(listaPasajeros, nuevoPasajero));
-    printf("%d\n\n", ll_len(listaPasajeros));
-    printf("%d\n",ll_add(listaPasajeros, nuevoPasajero));
-    printf("%d\n\n", ll_len(listaPasajeros));
-    printf("%d\n",ll_add(listaPasajeros, nuevoPasajero));
-    printf("%d\n\n", ll_len(listaPasajeros));
-    printf("%d\n",ll_add(listaPasajeros, nuevoPasajero));
     do{
 		printf("---------------------Menu-----------------------\n"
 				"3. Ingresar datos de un pasajero\n"
@@ -70,6 +58,7 @@ int main()
 					break;
 
 				case 4:
+					controller_editPassenger(listaPasajeros);
 					break;
 
 				case 5:

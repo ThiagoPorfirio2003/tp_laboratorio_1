@@ -26,7 +26,6 @@ int parser_PassengerFromText(FILE* pFile , LinkedList* pArrayListPassenger)
 	char tipoPasajeroCaracter[30];
 	char codigoVuelo[8];
 	char statusFlightCaracter[30];
-	char lecturaFalsa[100];
 
 	int idNumero;
 	float precioNumero;
@@ -37,10 +36,9 @@ int parser_PassengerFromText(FILE* pFile , LinkedList* pArrayListPassenger)
 
 	retorno=1;
 
-	fscanf(pFile,"%[^\n]\n",lecturaFalsa);
-
 	if(pFile != ((void*)0) && pArrayListPassenger != ((void*)0))
 	{
+		fscanf(pFile,"%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^\n]\n", idCaracter, nombre, apellido, precioCaracter, codigoVuelo, tipoPasajeroCaracter, statusFlightCaracter);
 		while(7 == fscanf(pFile,"%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^\n]\n", idCaracter, nombre, apellido, precioCaracter, codigoVuelo, tipoPasajeroCaracter, statusFlightCaracter))
 		{
 			if(!utn_verificarSerInt(idCaracter) && (idNumero = atoi(idCaracter)) >0 && !utn_verificarSerNombre(nombre) && !utn_verificarSerNombre(apellido) &&
@@ -72,7 +70,6 @@ int parser_PassengerFromText(FILE* pFile , LinkedList* pArrayListPassenger)
 							}
 							else
 							{
-								retorno=1;
 								break;
 							}
 
@@ -98,40 +95,35 @@ int parser_PassengerFromText(FILE* pFile , LinkedList* pArrayListPassenger)
 						}
 						else
 						{
-							retorno=1;
 							break;
 						}
 					}
 				}
-				//controller_MostrarUnPasajero(idNumero, nombre, apellido, precioNumero, codigoVuelo, tipoPasajeroNumero, statusFlightNumero);
 
-				if(((void*)0) !=(nuevoPasajero = Passenger_newParametros(&idNumero, nombre, apellido, &precioNumero, &tipoPasajeroNumero, codigoVuelo, &statusFlightNumero)))
+				if( ((void*)0) != (nuevoPasajero = Passenger_newParametros(&idNumero, nombre, apellido, &precioNumero, &tipoPasajeroNumero, codigoVuelo, &statusFlightNumero)))
 				{
-					controller_MostrarUnPasajero(nuevoPasajero);
-					printf("\n\nCrash antees add\n\n");
 					if(!ll_add(pArrayListPassenger, nuevoPasajero))
 					{
-						printf("Todo piola");
-
+						controller_MostrarUnPasajero(nuevoPasajero);
 					}
 					else
 					{
-						printf("Crash");
-						retorno =1;
 						break;
 					}
 				}
-
+				if(feof(pFile))
+				{
+					retorno=0;
+					break;
+				}
 			}
  			else
 			{
-				retorno=1;
 				break;
 			}
 		}
 
 	}
-
 
     return retorno;
 }

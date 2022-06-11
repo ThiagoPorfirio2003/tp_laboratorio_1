@@ -22,6 +22,7 @@ typedef struct
 
 Passenger* Passenger_new();
 Passenger* Passenger_newParametros(int* idStr,char* nombreStr, char* apellidoStr, float* precioStr, int* tipoPasajeroStr, char* codigoVueloStr, int* statusFlight);
+
 void Passenger_delete();
 
 int Passenger_setId(Passenger* this,int id);
