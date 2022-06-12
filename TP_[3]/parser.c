@@ -27,102 +27,36 @@ int parser_PassengerFromText(FILE* pFile , LinkedList* pArrayListPassenger)
 	char codigoVuelo[8];
 	char statusFlightCaracter[30];
 
-	int idNumero;
-	float precioNumero;
-	int tipoPasajeroNumero;
-	int statusFlightNumero;
+	int contadorTOTAL=0;
 
 	Passenger* nuevoPasajero;
 
 	retorno=1;
 
-	if(pFile != ((void*)0) && pArrayListPassenger != ((void*)0))
+	if(pFile != NULL && pArrayListPassenger != NULL)
 	{
 		fscanf(pFile,"%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^\n]\n", idCaracter, nombre, apellido, precioCaracter, codigoVuelo, tipoPasajeroCaracter, statusFlightCaracter);
 		while(7 == fscanf(pFile,"%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^\n]\n", idCaracter, nombre, apellido, precioCaracter, codigoVuelo, tipoPasajeroCaracter, statusFlightCaracter))
 		{
-			if(!utn_verificarSerInt(idCaracter) && (idNumero = atoi(idCaracter)) >0 && !utn_verificarSerNombre(nombre) && !utn_verificarSerNombre(apellido) &&
-					!utn_verificarSerFloat(precioCaracter) && (precioNumero = atof(precioCaracter)) >= PRECIO_MINIMO &&
-					!controller_verificarSerCodigoDeVuelo(codigoVuelo))
+			if((nuevoPasajero = Passenger_newParametros(idCaracter, nombre, apellido, precioCaracter, tipoPasajeroCaracter, codigoVuelo, statusFlightCaracter)) != NULL &&
+					!ll_add(pArrayListPassenger, nuevoPasajero))
 			{
-
-				if(!strcmp(statusFlightCaracter, "Aterrizado"))
+				if(!Passenger_MostrarUnPasajero(nuevoPasajero))
 				{
-					statusFlightNumero=1;
-				}
-				else
-				{
-					if(!strcmp(statusFlightCaracter, "En Horario"))
-					{
-						statusFlightNumero=2;
-					}
-					else
-					{
-						if(!strcmp(statusFlightCaracter, "Demorado"))
-						{
-							statusFlightNumero=3;
-						}
-						else
-						{
-							if(!strcmp(statusFlightCaracter, "En Vuelo"))
-							{
-								statusFlightNumero=4;
-							}
-							else
-							{
-								break;
-							}
-
-						}
-					}
-				}
-
-				if(!strcmp(tipoPasajeroCaracter, "FirstClass"))
-				{
-					tipoPasajeroNumero=1;
-				}
-				else
-				{
-					if(!strcmp(tipoPasajeroCaracter, "ExecutiveClass"))
-					{
-						tipoPasajeroNumero=2;
-					}
-					else
-					{
-						if(!strcmp(tipoPasajeroCaracter, "EconomyClass"))
-						{
-							tipoPasajeroNumero=3;
-						}
-						else
-						{
-							break;
-						}
-					}
-				}
-
-				if( ((void*)0) != (nuevoPasajero = Passenger_newParametros(&idNumero, nombre, apellido, &precioNumero, &tipoPasajeroNumero, codigoVuelo, &statusFlightNumero)))
-				{
-					if(!ll_add(pArrayListPassenger, nuevoPasajero))
-					{
-						controller_MostrarUnPasajero(nuevoPasajero);
-					}
-					else
-					{
-						break;
-					}
-				}
-				if(feof(pFile))
-				{
-					retorno=0;
-					break;
+					contadorTOTAL++;
 				}
 			}
- 			else
+			else
 			{
 				break;
 			}
-		}
 
+			if(feof(pFile))
+			{
+				retorno=0;
+				break;
+			}
+		}
 	}
 
     return retorno;

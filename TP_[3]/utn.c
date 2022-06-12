@@ -10,10 +10,10 @@ int static myGets(char* direccionCadenaCaracteres, int longitud)
 	char* bufferString;
 
 	retorno = 1;
-	if(longitud>1 && direccionCadenaCaracteres != ((void*)0) && !memoria_NewCharConTamanio(&bufferString, longitud))
+	if(longitud>1 && direccionCadenaCaracteres != NULL && !memoria_NewCharConTamanio(&bufferString, longitud))
 	{
 		fflush(stdin);
-		if(fgets(bufferString, sizeof(char)* longitud, stdin) != ((void*)0))
+		if(fgets(bufferString, sizeof(char)* longitud, stdin) != NULL)
 		{
 			if(*(bufferString +strnlen(bufferString, sizeof(char)* longitud)-1) == '\n')
 			{
@@ -35,7 +35,7 @@ int utn_verificarSerInt(char* cadenaDeCaracteres)
 	int retorno;
 	retorno = 1;
 
-	if(cadenaDeCaracteres != ((void*)0) && *cadenaDeCaracteres != '0')
+	if(cadenaDeCaracteres != NULL && (*cadenaDeCaracteres != '0' || *(cadenaDeCaracteres+1) == '\0'))
 	{
 		retorno=0;
 
@@ -65,7 +65,7 @@ int utn_verificarSerFloat(char* cadenaDeCaracteres)
 	retorno = 1;
 	contadorPuntos =0;
 
-	if(cadenaDeCaracteres != ((void*)0) && *cadenaDeCaracteres!='\0')
+	if(cadenaDeCaracteres != NULL && *cadenaDeCaracteres!='\0')
 	{
 		retorno=0;
 		if(*cadenaDeCaracteres == '-' || *cadenaDeCaracteres == '+')
@@ -95,7 +95,6 @@ int utn_verificarSerFloat(char* cadenaDeCaracteres)
 			}
 			cadenaDeCaracteres++;
 		}while(*cadenaDeCaracteres!= '\0');
-
 	}
 	return retorno;
 }
@@ -106,7 +105,7 @@ int utn_VerificarSerMinuscula(char* caracter)
 
 	retorno=1;
 
-	if(caracter !=((void*)0) && (islower(*caracter)||
+	if(caracter !=NULL && (islower(*caracter)||
 			*caracter == 'á' ||
 			*caracter == 'é' ||
 			*caracter == 'í' ||
@@ -126,7 +125,7 @@ int utn_VerificarSerMayuscula(char* caracter)
 
 	retorno=1;
 
-	if(caracter !=((void*)0) && (isupper(*caracter)||
+	if(caracter !=NULL && (isupper(*caracter)||
 			*caracter == 'Á' ||
 			*caracter == 'É' ||
 			*caracter == 'Í' ||
@@ -147,7 +146,7 @@ int utn_VerificarSerLetra(char* caracter)
 
 	retorno =1;
 
-	if(caracter!=((void*)0) && isalpha(*caracter))
+	if(caracter!=NULL && isalpha(*caracter))
 	{
 		retorno=0;
 	}
@@ -161,7 +160,8 @@ int utn_VerificarSerLetra_ASCII_EXTEND(char* caracter)
 
 	retorno =1;
 
-	if(caracter != ((void*)0) && (*caracter == 'á' ||
+	printf("%c\n", *caracter);
+	if(caracter != NULL && (*caracter == 'á' ||
 			*caracter == 'é' ||
 			*caracter == 'í' ||
 			*caracter == 'ó' ||
@@ -174,6 +174,7 @@ int utn_VerificarSerLetra_ASCII_EXTEND(char* caracter)
 			*caracter == 'ñ' ||
 			*caracter == 'Ñ'))
 	{
+		printf("no\n");
 		retorno=0;
 	}
 
@@ -186,7 +187,7 @@ int utn_verificarSerNombre(char* cadenaDeCaracteres)
 
 	retorno=1;
 
-	if(cadenaDeCaracteres != ((void*)0) && *cadenaDeCaracteres !=' ' && *cadenaDeCaracteres != '-')
+	if(cadenaDeCaracteres != NULL && *cadenaDeCaracteres !=' ' && *cadenaDeCaracteres != '-')
 	{
 		retorno =0;
 
@@ -212,27 +213,7 @@ int utn_verificarSerNombre(char* cadenaDeCaracteres)
 	}
 	return retorno;
 }
-/*
-{
-	int retorno;
 
-	retorno=1;
-
-	if(cadenaDeCaracteres != ((void*)0) && *cadenaDeCaracteres !=' ')
-	{
-		retorno =0;
-
-		do{
-			if(utn_VerificarSerLetra(cadenaDeCaracteres) && utn_VerificarSerLetra_ASCII_EXTEND(cadenaDeCaracteres))
-			{
-				retorno=1;
-				break;
-			}
-			cadenaDeCaracteres++;
-		}while(*cadenaDeCaracteres != '\0');
-	}
-	return retorno;
-}*/
 
 int utn_verificarSerCadenaAlfanumerica(char* cadenaCaracteres)
 {
@@ -244,7 +225,7 @@ int utn_verificarSerCadenaAlfanumerica(char* cadenaCaracteres)
 	banderaLetra=0;
 	retorno=1;
 
-	if(cadenaCaracteres != ((void*)0))
+	if(cadenaCaracteres != NULL)
 	{
 		do
 		{
@@ -282,7 +263,7 @@ int static getInt(int* direccionInt, int cantidadDeCifras)
 	retorno=1;
 
 	cantidadDeCifras+=2;
-	if(direccionInt !=((void*)0) && cantidadDeCifras>2 && !memoria_NewCharConTamanio(&bufferInt,cantidadDeCifras))
+	if(direccionInt !=NULL && cantidadDeCifras>2 && !memoria_NewCharConTamanio(&bufferInt,cantidadDeCifras))
 	{
 		if(!(myGets(bufferInt, cantidadDeCifras)) && !(utn_verificarSerInt(bufferInt)))
 		{
@@ -302,7 +283,7 @@ int static getFloat(float* direccionFloat, int cantidadDeCifras)
 	retorno=1;
 
 	cantidadDeCifras+=2;
-	if(direccionFloat !=((void*)0) && cantidadDeCifras>2 && !memoria_NewCharConTamanio(&bufferFloat,cantidadDeCifras))
+	if(direccionFloat !=NULL && cantidadDeCifras>2 && !memoria_NewCharConTamanio(&bufferFloat,cantidadDeCifras))
 	{
 		if(!(myGets(bufferFloat, cantidadDeCifras)) && !(utn_verificarSerFloat(bufferFloat)))
 		{
@@ -321,7 +302,7 @@ int static getNombre(char* direccionPalabra, int cantidadDeCaracteres)
 
 	retorno=1;
 
-	if(direccionPalabra!=((void*)0) && cantidadDeCaracteres>2 && !memoria_NewCharConTamanio(&bufferPalabra, cantidadDeCaracteres))
+	if(direccionPalabra!=NULL && cantidadDeCaracteres>2 && !memoria_NewCharConTamanio(&bufferPalabra, cantidadDeCaracteres))
 	{
 		if(!(myGets(bufferPalabra, cantidadDeCaracteres)) && !(utn_verificarSerNombre(bufferPalabra)))
 		{
@@ -340,7 +321,7 @@ int static getCadenaAlfanumerica(char* direccionCadena, int cantidadDeCaracteres
 
 	retorno=1;
 
-	if(direccionCadena!=((void*)0) && cantidadDeCaracteres>2 && !memoria_NewCharConTamanio(&bufferPalabra, cantidadDeCaracteres))
+	if(direccionCadena!=NULL && cantidadDeCaracteres>2 && !memoria_NewCharConTamanio(&bufferPalabra, cantidadDeCaracteres))
 	{
 		if(!(myGets(bufferPalabra, cantidadDeCaracteres)) && !(utn_verificarSerCadenaAlfanumerica(bufferPalabra)))
 		{
@@ -358,7 +339,7 @@ int utn_trasnformarCadenaAMayuscula(char* direccionCadena)
 
 	retorno=1;
 
-	if(direccionCadena!=((void*)0))
+	if(direccionCadena!=NULL)
 	{
 		retorno= 0;
 		do{
@@ -381,7 +362,7 @@ int utn_CorregirNombre(char* direccionPalabra)
 	retorno=1;
 	banderaEspacio=0;
 
-	if(direccionPalabra !=((void*)0))
+	if(direccionPalabra !=NULL)
 	{
 		retorno =0;
 		*direccionPalabra = toupper(*direccionPalabra);
@@ -418,9 +399,9 @@ int utn_GetIntRango(int* direccionInt, char* mensaje, char* mensajeError, int mi
 
 	retorno=1;
 
-	if(direccionInt!=((void*)0) &&
-			mensaje!=((void*)0) &&
-			mensajeError!=((void*)0) &&
+	if(direccionInt!=NULL &&
+			mensaje!=NULL &&
+			mensajeError!=NULL &&
 			minimo<=maximo
 			&& cantidadDeCifras > 0)
 	{
@@ -442,9 +423,9 @@ int utn_GetFloatRango(float* direccionFloat, char* mensaje, char* mensajeError, 
 
 	retorno=1;
 
-	if(direccionFloat!=((void*)0) &&
-			mensaje!=((void*)0) &&
-			mensajeError!=((void*)0) &&
+	if(direccionFloat!=NULL &&
+			mensaje!=NULL &&
+			mensajeError!=NULL &&
 			minimo<=maximo &&
 			cantidadDeCifras>0)
 	{
@@ -466,9 +447,9 @@ int utn_GetNombreRango(char* direccionPalabra, char* mensaje, char* mensajeError
 
 	retorno =1;
 
-	if(direccionPalabra != ((void*)0) &&
-			mensaje != ((void*)0) &&
-			mensajeError !=((void*)0) &&
+	if(direccionPalabra != NULL &&
+			mensaje != NULL &&
+			mensajeError !=NULL &&
 			cantidadMinimaCaracteres > 0 &&
 			cantidadMaximaCaracteres > 0 &&
 			cantidadMaximaCaracteres <= cantidadDeCaracteres &&
@@ -497,9 +478,9 @@ int utn_GetCadenaAlfanumericaRango(char* direccionCadenaAlfanumerica, char* mens
 
 	retorno =1;
 
-	if(direccionCadenaAlfanumerica != ((void*)0) &&
-			mensaje != ((void*)0) &&
-			mensajeError !=((void*)0) &&
+	if(direccionCadenaAlfanumerica != NULL &&
+			mensaje != NULL &&
+			mensajeError !=NULL &&
 			cantidadMinimaCaracteres > 0 &&
 			cantidadMaximaCaracteres > 0 &&
 			cantidadMaximaCaracteres <= cantidadDeCaracteres &&

@@ -8,11 +8,11 @@ int memoria_NewInt(int** punteroAPunteroFloatEstatico)
 
 	retorno=1;
 
-	if(punteroAPunteroFloatEstatico!=((void*)0))
+	if(punteroAPunteroFloatEstatico!=NULL)
 	{
-		*punteroAPunteroFloatEstatico=((void*)0);
+		*punteroAPunteroFloatEstatico=NULL;
 		*punteroAPunteroFloatEstatico= (int*) malloc(sizeof(int));
-		if(*punteroAPunteroFloatEstatico!=((void*)0))
+		if(*punteroAPunteroFloatEstatico!=NULL)
 		{
 			retorno=0;
 		}
@@ -26,11 +26,11 @@ int memoria_NewFloat(float** punteroAPunteroFloatEstatico)
 
 	retorno=1;
 
-	if(punteroAPunteroFloatEstatico!=((void*)0))
+	if(punteroAPunteroFloatEstatico!=NULL)
 	{
-		*punteroAPunteroFloatEstatico=((void*)0);
+		*punteroAPunteroFloatEstatico=NULL;
 		*punteroAPunteroFloatEstatico= (float*) malloc(sizeof(float));
-		if(*punteroAPunteroFloatEstatico!=((void*)0))
+		if(*punteroAPunteroFloatEstatico!=NULL)
 		{
 			retorno=0;
 		}
@@ -44,11 +44,11 @@ int memoria_NewChar(char** punteroAPunteroCharEstatico)
 
 	retorno=1;
 
-	if(punteroAPunteroCharEstatico!=((void*)0))
+	if(punteroAPunteroCharEstatico!=NULL)
 	{
-		*punteroAPunteroCharEstatico=((void*)0);
+		*punteroAPunteroCharEstatico=NULL;
 		*punteroAPunteroCharEstatico= (char*) malloc(sizeof(char));
-		if(*punteroAPunteroCharEstatico!=((void*)0))
+		if(*punteroAPunteroCharEstatico!=NULL)
 		{
 			retorno=0;
 		}
@@ -62,11 +62,11 @@ int memoria_NewIntConTamanio(int** punteroAPunteroIntEstatico ,int longitud)
 
 	retorno=1;
 
-	if(punteroAPunteroIntEstatico!=((void*)0) && longitud>0)
+	if(punteroAPunteroIntEstatico!=NULL && longitud>0)
 	{
-		*punteroAPunteroIntEstatico=((void*)0);
+		*punteroAPunteroIntEstatico=NULL;
 		*punteroAPunteroIntEstatico= (int*) malloc(sizeof(int) * longitud);
-		if(*punteroAPunteroIntEstatico!=((void*)0))
+		if(*punteroAPunteroIntEstatico!=NULL)
 		{
 			retorno=0;
 		}
@@ -80,11 +80,11 @@ int memoria_NewFloatConTamanio(float** punteroAPunteroFloatEstatico ,int longitu
 
 	retorno=1;
 
-	if(punteroAPunteroFloatEstatico!=((void*)0) && longitud>0)
+	if(punteroAPunteroFloatEstatico!=NULL && longitud>0)
 	{
-		*punteroAPunteroFloatEstatico=((void*)0);
+		*punteroAPunteroFloatEstatico=NULL;
 		*punteroAPunteroFloatEstatico= (float*) malloc(sizeof(float) * longitud);
-		if(*punteroAPunteroFloatEstatico!=((void*)0))
+		if(*punteroAPunteroFloatEstatico!=NULL)
 		{
 			retorno=0;
 		}
@@ -98,11 +98,11 @@ int memoria_NewCharConTamanio(char** punteroAPunteroCharEstatico ,int longitud)
 
 	retorno=1;
 
-	if(punteroAPunteroCharEstatico!=((void*)0) && longitud>0)
+	if(punteroAPunteroCharEstatico!=NULL && longitud>0)
 	{
-		*punteroAPunteroCharEstatico=((void*)0);
+		*punteroAPunteroCharEstatico=NULL;
 		*punteroAPunteroCharEstatico= (char*) malloc(sizeof(char) * longitud);
-		if(*punteroAPunteroCharEstatico!=((void*)0))
+		if(*punteroAPunteroCharEstatico!=NULL)
 		{
 			retorno=0;
 		}
@@ -117,11 +117,11 @@ int memoria_ReSizeInt(int** punteroAPunteroIntDinamico ,int nuevaLongitud)
 
 	retorno=1;
 
-	if(punteroAPunteroIntDinamico!=((void*)0) && nuevaLongitud>0 && !memoria_NewInt(&punteroAIntAuxiliar))
+	if(punteroAPunteroIntDinamico!=NULL && nuevaLongitud>0 && !memoria_NewInt(&punteroAIntAuxiliar))
 	{
 		punteroAIntAuxiliar = (int*)realloc(*punteroAPunteroIntDinamico,sizeof(int)* nuevaLongitud);
 
-		if(punteroAIntAuxiliar!=((void*)0))
+		if(punteroAIntAuxiliar!=NULL)
 		{
 			*punteroAPunteroIntDinamico = punteroAIntAuxiliar;
 			retorno=0;
@@ -137,11 +137,11 @@ int memoria_ReSizeFloat(float** punteroAPunteroFloatDinamico ,int nuevaLongitud)
 
 	retorno=1;
 
-	if(punteroAPunteroFloatDinamico!=((void*)0) && nuevaLongitud>0 && !memoria_NewFloat(&punteroAFloatAuxiliar))
+	if(punteroAPunteroFloatDinamico!=NULL && nuevaLongitud>0 && !memoria_NewFloat(&punteroAFloatAuxiliar))
 	{
 		punteroAFloatAuxiliar = (float*)realloc(*punteroAPunteroFloatDinamico,sizeof(float)* nuevaLongitud);
 
-		if(punteroAFloatAuxiliar!=((void*)0))
+		if(punteroAFloatAuxiliar!=NULL)
 		{
 			*punteroAPunteroFloatDinamico = punteroAFloatAuxiliar;
 			retorno=0;
@@ -157,11 +157,11 @@ int memoria_ReSizeChar(char** punteroAPunteroCharDinamico ,int nuevaLongitud)
 
 	retorno=1;
 
-	if(punteroAPunteroCharDinamico!=((void*)0) && nuevaLongitud>0 && !memoria_NewChar(&punteroAFloatAuxiliar))
+	if(punteroAPunteroCharDinamico!=NULL && nuevaLongitud>0 && !memoria_NewChar(&punteroAFloatAuxiliar))
 	{
 		punteroAFloatAuxiliar = (char*)realloc(*punteroAPunteroCharDinamico,sizeof(char)* nuevaLongitud);
 
-		if(punteroAFloatAuxiliar!=((void*)0))
+		if(punteroAFloatAuxiliar!=NULL)
 		{
 			*punteroAPunteroCharDinamico = punteroAFloatAuxiliar;
 			retorno=0;
